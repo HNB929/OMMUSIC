@@ -1,0 +1,625 @@
+@charset "utf-8"; 
+
+body {
+	min-width: 1200px;
+	position: relative
+}
+
+#musicCon {
+	width: 1200px;
+	margin: 60px auto
+}
+
+.borderRadius {
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	border-radius: 2px
+}
+
+#wp_mute {
+	cursor: pointer
+}
+
+#wp_mute:hover {
+	background-position: -69px 0
+}
+
+.music {
+	overflow: hidden;
+	width: 1200px;
+	position: relative
+}
+
+#musiclrc {
+	float: left;
+	width: 740px
+}
+
+#lrcName {
+	font-size: 24px;
+	color: #333;
+	display: block;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	text-align: center
+}
+
+.info {
+	width: 737px;
+	border-bottom: 1px solid #eaeaea;
+	margin: 20px 0 10px 0;
+	text-align: center;
+	padding-bottom: 10px
+}
+
+.info p {
+	font-size: 14px;
+	color: #666;
+	line-height: 32px;
+	display: inline
+}
+
+.info p.album {
+	margin-right: 5px
+}
+
+.info p.artist {
+	margin-left: 5px
+}
+
+.info span a {
+	color: #cd9800
+}
+
+.singleShareBox {
+	display: inline;
+	margin-left: 10px;
+	position: relative;
+	z-index: 1
+}
+
+.singleShareBox .share {
+	padding-left: 25px;
+	height: 15px;
+	background: url(http://www.kuwo.cn/static/image/singles/shareIcon.jpg)
+		no-repeat 0 2px;
+	color: #cd9800
+}
+
+.singleSharecontent {
+	display: none;
+	position: absolute;
+	left: 49px;
+	top: -56px;
+	padding-left: 15px;
+	width: 231px;
+	height: 56px;
+	background: url(http://www.kuwo.cn/static/image/singles/singleShare.png)
+}
+
+.singleSharecontent a {
+	float: left;
+	width: 32px;
+	height: 32px;
+	margin: 8px 14px 0 0
+}
+
+.goComment {
+	color: #cd9800;
+	margin-left: 10px;
+	padding-left: 25px;
+	height: 14px;
+	background: url(http://www.kuwo.cn/static/image/singles/commentIcon.jpg)
+		no-repeat 0 2px
+}
+
+#lrcContent {
+	text-align: center;
+	font-size: 14px;
+	color: #666;
+	line-height: 32px;
+	height: 456px;
+	overflow: hidden;
+	margin-bottom: 15px
+}
+
+#lrcContent .current {
+	color: #cd9800;
+	font-size: 16px
+}
+
+#lrcContent p {
+	height: auto !important;
+	height: 32px;
+	min-height: 32px
+}
+
+#lrcContent p.noLrc {
+	margin-top: 100px
+}
+
+#playerBox {
+	width: 430px;
+	position: absolute;
+	right: 0;
+	top: 0
+}
+
+.musiciPic {
+	margin: 0 0 41px 35px;
+	width: 290px;
+	height: 290px;
+	position: relative;
+	overflow: hidden
+}
+
+.musiciPic img {
+	width: 100%;
+	height: 100%;
+	-moz-border-radius: 50%;
+	-webkit-border-radius: 50%;
+	border-radius: 50%
+}
+
+.musiciPic .splice {
+	width: 100%;
+	height: 100%;
+	background: url(http://image.kuwo.cn/website/pc/singles/splice.png);
+	position: absolute;
+	top: 0;
+	left: 0
+}
+
+.play, .zan {
+	width: 40px;
+	height: 40px;
+	background: url(http://image.kuwo.cn/website/pc/singles/icon.jpg);
+	cursor: pointer;
+	float: left
+}
+
+.play {
+	background-position: -110px 0
+}
+
+.zan {
+	background-position: -207px 0
+}
+
+.play:hover {
+	background-position: -162px 0
+}
+
+.zan:hover {
+	background-position: -207px -48px
+}
+
+.playerMid {
+	float: left;
+	width: 300px;
+	height: 10px;
+	position: relative;
+	margin: 15px 0 0 10px
+}
+
+.playerMid #prograssBar {
+	float: left;
+	position: relative;
+	width: 100%;
+	height: 4px;
+	background: #ccc;
+	margin-top: 3px;
+	display: inline
+}
+
+.playerMid .prograssBar {
+	width: 0;
+	height: 4px;
+	background: #ffcd2d;
+	overflow: hidden
+}
+
+.playerMid #wp_bufBar {
+	width: 0;
+	height: 4px;
+	background: #c1c1c1
+}
+
+.playerMid #wp_processBtn {
+	width: 10px;
+	height: 10px;
+	background: url(http://image.kuwo.cn/website/pc/singles/icon.jpg) -23px
+		0;
+	position: absolute;
+	top: -3px
+}
+
+#wp_playTime {
+	float: left;
+	margin: 11px 0 0 10px;
+	font-size: 12px;
+	color: #999;
+	display: inline
+}
+
+#wp_mute {
+	float: left;
+	width: 20px;
+	height: 16px;
+	background: url(http://image.kuwo.cn/website/pc/singles/icon.jpg)
+		no-repeat -44px 0;
+	margin: 12px 0 0 10px
+}
+
+#wrap .hovered {
+	background-position: -69px 0
+}
+
+.sound_img_2 {
+	background-position: -309px -129px
+}
+
+.sound_img_2:hover {
+	background-position: -309px -113px
+}
+
+#soundBox {
+	position: absolute;
+	bottom: 207px;
+	right: 6px;
+	width: 26px;
+	height: 87px;
+	background: url(http://image.kuwo.cn/website/pc/singles/icon.jpg) -250px
+		0;
+	display: none
+}
+
+#soundBox.isvisibility {
+	display: block
+}
+
+#soundBox .soundBox #soundPro {
+	cursor: pointer;
+	width: 3px;
+	height: 69px;
+	background: #ccc repeat;
+	top: 7px;
+	left: 12px;
+	position: relative
+}
+
+#soundBox .soundBox #soundPro .soundPro {
+	width: 3px;
+	height: 69px;
+	background: #ffcd2d;
+	position: absolute;
+	bottom: 0
+}
+
+#soundBox .soundBox #soundPro #wp_volBtn {
+	width: 9px;
+	height: 9px;
+	background: url(http://image.kuwo.cn/website/pc/singles/icon.jpg) -95px
+		-1px;
+	position: absolute;
+	left: -3px;
+	overflow: hidden
+}
+
+#llrcArea {
+	width: 100%;
+	height: 100%;
+	overflow: hidden
+}
+
+#llrcId {
+	position: relative
+}
+
+.lyric_now {
+	color: #cd9800;
+	font-size: 16px
+}
+
+.down {
+	float: left;
+	margin: 62px 0 0 41px;
+	position: relative;
+	cursor: pointer
+}
+
+.down a {
+	display: block;
+	width: 198px;
+	height: 40px;
+	background: url(http://image.kuwo.cn/website/pc/singles/icon.jpg) 0
+		-48px;
+	font-size: 16px;
+	line-height: 40px
+}
+
+.down a span {
+	float: left;
+	margin-left: 3px;
+	cursor: pointer
+}
+
+.down a span.icon {
+	width: 19px;
+	height: 18px;
+	background: url(http://image.kuwo.cn/website/pc/singles/icon.jpg);
+	margin: 11px 0 0 33px;
+	display: inline;
+	overflow: hidden
+}
+
+.tips {
+	position: absolute;
+	top: 49px;
+	left: -15px;
+	font-size: 14px;
+	color: #fff;
+	width: 229px;
+	height: 42px;
+	display: none
+}
+
+.jiao {
+	background: url(http://image.kuwo.cn/website/pc/singles/icon.jpg) -23px
+		-26px;
+	width: 13px;
+	height: 7px;
+	display: block;
+	margin: 0 auto;
+	overflow: hidden
+}
+
+.tips p {
+	background: #b2b2b2;
+	height: 35px;
+	line-height: 35px;
+	text-indent: 11px
+}
+
+.tips p span {
+	float: left;
+	color: #fff
+}
+
+.tips p span.close {
+	width: 12px;
+	height: 12px;
+	background: url(http://image.kuwo.cn/website/pc/singles/icon.jpg) 0
+		-26px;
+	margin: 12px 0 0 12px;
+	overflow: hidden;
+	cursor: pointer
+}
+
+.tuiguang {
+	overflow: hidden;
+	height: 108px;
+	position: relative;
+	margin-top: 20px
+}
+
+.tuiguang .swf {
+	position: absolute;
+	top: -20px;
+	left: 0
+}
+
+.tuiguang embed {
+	position: absolute;
+	top: -20px;
+	*top: -40px;
+	left: 0
+}
+
+.tuiguang a {
+	position: absolute;
+	width: 1200px;
+	height: 108px;
+	left: 0;
+	top: 0;
+	cursor: pointer;
+	z-index: 1;
+	background-color: #fff;
+	filter: alpha(opacity = 0);
+	opacity: 0
+}
+
+.adItem {
+	position: absolute
+}
+
+.list {
+	overflow: hidden
+}
+
+.model {
+	float: left;
+	width: 388px;
+	height: 318px;
+	border: 1px solid #dbdbdb;
+	margin: 15px 15px 60px 0
+}
+
+.topBang {
+	margin-right: 0
+}
+
+.modelTitle {
+	width: 350px;
+	border-bottom: 1px solid #ececec;
+	margin-left: 18px;
+	overflow: hidden;
+	padding: 16px 0
+}
+
+.modelTitle h2 {
+	float: left;
+	font-size: 16px;
+	color: #333;
+	font-weight: 500
+}
+
+.modelTitle a {
+	float: right;
+	color: #999
+}
+
+.model ul li {
+	width: 350px;
+	margin: 18px 0 0 18px;
+	*margin-top: 15px;
+	overflow: hidden;
+	font-size: 14px
+}
+
+.model ul li span {
+	float: left;
+	margin-right: 20px;
+	color: #999
+}
+
+.model ul li span.red {
+	color: #c82525;
+	font-weight: 600
+}
+
+.model ul li a.name {
+	float: left;
+	color: #666;
+	width: 196px;
+	display: block;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis
+}
+
+.model ul li a.artist {
+	float: left;
+	color: #999;
+	margin-left: 18px;
+	width: 77px;
+	display: block;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis
+}
+
+.model.albumOther ul li a.artist {
+	width: 116px
+}
+
+.model ul li a.listen {
+	float: left;
+	float: right;
+	width: 14px;
+	height: 9px;
+	background: url(http://image.kuwo.cn/website/pc/singles/icon.jpg) -69px
+		-26px;
+	display: block;
+	margin-top: 7px;
+	overflow: hidden
+}
+
+.model ul li a.listen:hover {
+	background: url(http://image.kuwo.cn/website/pc/singles/icon.jpg) -44px
+		-26px
+}
+
+.model ul li.noresult {
+	text-align: center;
+	margin-top: 110px
+}
+
+.model ul li.noresult a {
+	color: #cd9800
+}
+
+.closeQr {
+	color: #333;
+	position: absolute;
+	right: -20px;
+	top: -10px
+}
+
+.scrollbar {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box
+}
+
+#mCSB_1_dragger_vertical .mCSB_dragger_bar {
+	width: 5px;
+	background: #e4e4e4
+}
+
+#mCSB_1_scrollbar_vertical .mCSB_draggerRail {
+	width: 5px;
+	background: #fff
+}
+
+.showAdBox {
+	float: left;
+	margin: 30px 0 0 10px;
+	display: none
+}
+
+.showHeadPic {
+	float: left;
+	width: 54px;
+	height: 54px;
+	-moz-border-radius: 50%;
+	-webkit-border-radius: 50%;
+	border-radius: 50%;
+	margin-right: 6px
+}
+
+.showAd {
+	float: left;
+	width: 220px;
+	height: 54px;
+	background: url(http://www.kuwo.cn/static/image/singles/showAdBg.jpg);
+	padding-left: 30px
+}
+
+.showerName {
+	float: left;
+	color: #595891
+}
+
+.showAd img {
+	width: 12px;
+	height: 12px
+}
+
+.showAd p {
+	color: #595891;
+	opacity: .5;
+	line-height: 23px;
+	margin-top: 4px
+}
+
+.showAd .showAdLine {
+	line-height: 23px;
+	color: #595891
+}
+
+.showAd .showAdLine span {
+	display: inline-block;
+	max-width: 145px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	vertical-align: top
+}
+
+.showAd .showAdLine a {
+	color: #7a38ff;
+	float: right;
+	margin-right: 10px
+}

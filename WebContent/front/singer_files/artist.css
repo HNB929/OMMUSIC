@@ -1,0 +1,219 @@
+@charset "utf-8";
+body {
+	min-width: 1200px
+}
+
+p,
+a {
+	color: #333
+}
+
+.comW {
+	width: 1200px;
+	margin: 0 auto
+}
+
+.fl {
+	float: left
+}
+
+.fr {
+	float: right
+}
+
+#artistContent {
+	overflow: hidden;
+	padding: 20px 0
+}
+
+.leftNav {
+	position: relative;
+	width: 178px;
+	text-indent: 13px;
+	border: 1px solid #e7e7e7
+}
+
+.leftNav .all {
+	display: block;
+	width: 160px;
+	height: 58px;
+	line-height: 58px;
+	margin: 0 auto;
+	border-bottom: 1px solid #e7e7e7;
+	cursor: pointer;
+	font-size: 16px
+}
+
+.leftNav .area {
+	width: 160px;
+	margin: 0 auto;
+	padding: 10px 0 8px 0;
+	border-bottom: 1px solid #e7e7e7
+}
+
+.leftNav .area dt {
+	font-size: 16px;
+	height: 36px;
+	line-height: 36px;
+	color: #333
+}
+
+.leftNav .area dd {
+	height: 34px;
+	line-height: 34px
+}
+
+.leftNav .area dd a {
+	color: #666
+}
+
+.leftNav .all.active,
+.leftNav .area a.active {
+	font-weight: bold
+}
+
+.leftNav .activeline {
+	position: absolute;
+	left: -1px;
+	top: -30px;
+	width: 4px;
+	height: 20px;
+	background: #f0bc0f;
+	display: none
+}
+
+.rightContentBox {
+	width: 979px;
+	height: 1123px;
+	padding: 0 20px;
+	position: relative
+}
+
+.rightContentBox .topSelect {
+	overflow: hidden
+}
+
+.rightContentBox .topSelect a {
+	height: 24px;
+	line-height: 24px;
+	text-align: center;
+	font-size: 16px
+}
+
+.rightContentBox .topSelect a.active {
+	background: #f0bc0f;
+	color: #fff
+}
+
+.rightContentBox .topSelect .select {
+	float: left;
+	width: 24px;
+	margin-left: 9px;
+	border-radius: 50%
+}
+
+.rightContentBox .topSelect .hot {
+	padding: 0 12px;
+	margin-left: 20px;
+	border-radius: 15px
+}
+
+.rightContentBox .artistBox {
+	width: 1030px;
+	height: 944px;
+	margin-top: 40px;
+	overflow: hidden
+}
+
+.rightContentBox .artistBox li {
+	float: left;
+	width: 274px;
+	height: 196px;
+	margin: 0 66px 40px 0
+}
+
+
+.rightContentBox .artistBox li .artistTop {
+	overflow: hidden
+}
+
+.rightContentBox .artistBox li .artistLeft {
+	width: 160px;
+	height: 160px
+}
+
+.rightContentBox .artistBox li img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
+}
+
+.rightContentBox .artistBox li .artistRight {
+	width: 94px;
+	height: 160px;
+	padding-left: 20px
+}
+
+.rightContentBox .artistBox li .artistRight ul {
+	overflow: hidden
+}
+
+.rightContentBox .artistBox li .artistRight ul li {
+	width: 100%;
+	height: 28px;
+	line-height: 28px;
+	margin: 0;
+	font-size: 12px
+}
+.rightContentBox .artistBox li .artistRight ol li {
+	width: 100%;
+	height: 28px;
+	line-height: 28px;
+	margin: 0;
+	font-size: 12px
+}
+
+.rightContentBox .artistBox li .artistRight ul li a {
+	width: 90%;
+	display: block;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis
+}
+
+.rightContentBox .artistBox li .artistRight .newlist {
+	display: none
+}
+
+.rightContentBox .artistBox li .artistRight .albumlist {
+	display: none
+}
+
+.rightContentBox .artistBox li .artistnav {
+	width: 94px;
+	height: 24px;
+	line-height: 24px;
+	margin-bottom: 4px
+}
+
+.rightContentBox .artistBox li .artistnav a {
+	float: left;
+	margin-right: 4px;
+	color: #cd9800
+}
+
+.rightContentBox .artistBox li .artistnav a.active {
+	color: #000;
+	font-weight: bold
+}
+
+.rightContentBox .artistBox li .a_name {
+	display: block;
+	width: 160px;
+	padding-right: 114px;
+	height: 18px;
+	line-height: 18px;
+	margin-top: 22px;
+	text-align: center
+}

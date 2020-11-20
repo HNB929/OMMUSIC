@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.music.dao.SingerTypeDao">
+
+	<!-- 获取全部歌曲类型信息 -->
+	<select id="findAll" resultType="com.music.bean.view.SingerTypeViewModel">
+		SELECT
+			id,
+			name,
+			remark
+		FROM singer_type
+		ORDER BY id DESC
+	</select>
+	
+	<!-- 获取全部有效信息 -->
+	<select id="findIsValid" resultType="com.music.bean.view.SingerTypeViewModel">
+		SELECT
+			id,
+			name,
+			remark
+		FROM singer_type
+		WHERE remark = '1'
+	</select>
+	
+	<!-- 主键获取 -->
+	<select id="findByPrimaryKey" resultType="com.music.bean.view.SingerTypeViewModel">
+		SELECT
+			id,
+			name,
+			remark
+		FROM singer_type
+		WHERE id = #{singerTypeId}
+	</select>
+	
+	<!-- 数据更新 -->
+	<update id="update" parameterType="com.music.bean.view.SingerTypeViewModel">
+		UPDATE singer_type SET
+			id = #{id},
+			name = #{name},
+			remark = #{remark}
+		WHERE id = #{id}
+	</update>
+	
+	<!-- 数据插入 -->
+	<insert id="insert" parameterType="com.music.bean.view.SingerTypeViewModel">
+		INSERT INTO singer_type(
+			id,
+			name,
+			remark
+		)VALUES(
+			#{id},
+			#{name},
+			#{remark}
+		)
+	</insert>	
+	
+</mapper>

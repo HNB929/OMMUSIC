@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.music.dao.SingerDao">
+	<resultMap id="BaseResultMap" type="com.music.bean.Singer">
+		<id column="ID" property="singerId" />
+		<result column="NAME" property="singerName" />
+		<result column="ALIAS" property="alias" />
+		<result column="LANGUAGE" property="language" />
+		<result column="BIRTHDAY" property="birthday" />
+		<result column="HEIGHT" property="height" />
+		<result column="SEX" property="sex" />
+		<result column="NATION" property="nation" />
+		<result column="BIRTHPLACE" property="birthplace" />
+		<result column="CONSTELLATION" property="constellation" />
+		<result column="WEIGHT" property="weight" />
+		<result column="PICTURE" property="picture" />
+		<result column="SINGER_TYPEID" property="singerTypeid" />
+		<result column="JOB" property="job" />
+		<result column="COMPANY" property="company" />
+		<result column="REPRESENTATIVE" property="representative" />
+		<result column="SCHOOL" property="school" />
+		<result column="FIRSTNAME" property="firstname" />
+		<result column="REMARK" property="remark" />
+
+
+	</resultMap>
+	
+	<sql id="Base_Column_List">
+		ID, NAME, ALIAS, LANGUAGE, BIRTHDAY, HEIGHT, SEX, NATION,
+		BIRTHPLACE,
+		CONSTELLATION,
+		WEIGHT, PICTURE, SINGER_TYPEID, JOB, COMPANY,
+		REPRESENTATIVE, SCHOOL,
+		FIRSTNAME,
+		REMARK
+	</sql>
+	
+	<!-- 获取歌手数 -->
+	<select id="getSingerCount" parameterType="int" resultType="int">
+		select count(1) from Singer 
+	</select>
+	
+	<!-- 根据id查询歌手信息 -->
+	<select id="getOneSinger" parameterType="int"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from SINGER
+		where ID = #{id}
+	</select>
+	
+	<!-- 查询全部歌手的姓名与id 根据播放次数排序 -->
+	<select id="getAllSingerByCount" parameterType="int" resultMap="BaseResultMap">
+		select
+			s.singerid id,
+			si.name ,
+			si.picture 
+		from singer si , 
+			(select
+				sum(count) allcount ,
+				singerid 
+			from song 
+			group by singerid 
+			) s
+		where si.id = s.singerid
+		order by s.allcount desc
+	</select>
+	
+	<select id="getPageSingerByCount" parameterType="int" resultMap="BaseResultMap">
+		SELECT 
+			so.singerid id,
+			si.name ,
+			si.picture,
+			SUM(so.count) allcount
+		FROM singer si
+		JOIN song so ON si.id = so.singerid
+		GROUP BY si.id
+		ORDER BY allcount DESC
+		limit #{startNum},#{endNum}
+	</select>
+	
+
+	<!-- 根据歌手首字母查询歌手 -->
+	<select id="getSingerByFirstName" parameterType="String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from SINGER
+		where FIRSTNAME=#{firstname}
+	</select>
+	
+
+	
+	<!-- 根据类别获取 -->
+	<select resultMap="BaseResultMap" id = "getSingerByKind" parameterType="String">
+		select
+			<include refid="Base_Column_List" />
+		from SINGER
+		where 
+		<if test="_parameter == kind1">
+		SINGER_TYPEID = 1 and SEX = '男'
+		</if>
+		<if test="_parameter == kind2">
+		SINGER_TYPEID = 1 and SEX = '女'
+		</if>
+		<if test="_parameter == kind3">
+		SINGER_TYPEID = 2
+		</if>
+		<if test="_parameter == kind4">
+		SINGER_TYPEID = 3 and SEX = '男'
+		</if>
+		<if test="_parameter == kind5">
+		SINGER_TYPEID = 3 and SEX = '女'
+		</if>
+		<if test="_parameter == kind6">
+		SINGER_TYPEID = 4 
+		</if>
+		<if test="_parameter == kind7">
+		SINGER_TYPEID = 5 and SEX = '男'
+		</if>
+		<if test="_parameter == kind8">
+		SINGER_TYPEID = 5 and SEX = '女'
+		</if>
+		<if test="_parameter == kind9">
+		SINGER_TYPEID = 6
+		</if>
+	</select>
+	
+	
+	
+	
+	<!-- 获取歌手信息 -->
+	<select id="findList" parameterType="map" resultType="com.music.bean.view.SingerViewModel">
+		SELECT
+			si.*,
+			st.name as singerTypeName
+		FROM singer si
+		LEFT JOIN singer_type st on st.id = si.singer_typeid
+		WHERE 1 = 1
+		<if test="remark != null and remark != ''">
+			AND si.remark = #{remark}
+		</if>
+		ORDER BY id DESC
+	</select>
+	
+	<!-- 主键获取 -->
+	<select id="findByPrimaryKey" parameterType="map" resultType="com.music.bean.view.SingerViewModel">
+		SELECT
+			si.*
+		FROM singer si
+		WHERE si.id = #{singerId}
+	</select>
+	
+	<!-- 数据更新 -->
+	<update id="update" parameterType="com.music.bean.view.SingerViewModel">
+		UPDATE singer SET
+			id = #{id},
+			name = #{name},
+			alias = #{alias},
+			language = #{language},
+			birthday = #{birthday},
+			height = #{height},
+			sex = #{sex},
+			nation = #{nation},
+			birthplace = #{birthplace},
+			constellation = #{constellation},
+			weight = #{weight},
+			picture = #{picture},
+			singer_typeid = #{singer_typeid},
+			job = #{job},
+			company = #{company},
+			representative = #{representative},
+			school = #{school},
+			firstname = #{firstname},
+			remark = #{remark}
+		WHERE id = #{id}
+	</update>
+	
+	<!-- 数据插入 -->
+	<insert id="insert" parameterType="com.music.bean.view.SingerViewModel">
+		INSERT INTO singer(
+			id ,
+			name ,
+			alias ,
+			language,
+			birthday,
+			height,
+			sex,
+			nation,
+			birthplace,
+			constellation,
+			weight,
+			picture,
+			singer_typeid,
+			job,
+			company,
+			representative,
+			school,
+			firstname,
+			remark
+		)VALUES(
+			#{id},
+			#{name},
+			#{alias},
+			#{language},
+			#{birthday},
+			#{height},
+			#{sex},
+			#{nation},
+			#{birthplace},
+			#{constellation},
+			#{weight},
+			#{picture},
+			#{singer_typeid},
+			#{job},
+			#{company},
+			#{representative},
+			#{school},
+			#{firstname},
+			#{remark}
+		)
+	</insert>
+	
+	<!-- 根据关键字获取歌手信息集合 -->
+	<select id="findByName" parameterType="com.music.bean.Singer" resultType="com.music.bean.view.SingerViewModel">
+		SELECT 
+			* 
+		FROM singer
+		WHERE name LIKE #{singerName}
+	</select>
+	
+	<select id="findSingerInfo" parameterType="map" resultType="com.music.bean.view.SingerAndSongViewModel">
+		SELECT 
+			si.*,
+			st.name AS singTypeName,
+			s1.*
+		FROM singer si
+		LEFT JOIN singer_type st ON st.id = si.singer_typeid 
+		LEFT JOIN (
+			SELECT 
+				SUM(COUNT) AS allPlayCount,
+				singerid
+			FROM song
+			GROUP BY singerid
+		)s1 ON s1.singerid = si.id
+		WHERE 1 = 1
+		<if test="firstName != null and firstName != ''">
+			AND si.firstname = #{firstName}
+		</if>
+		<if test="sex != null and sex != ''">
+			AND si.sex = #{sex}
+		</if>
+		<if test="singerTypeId != null">
+			AND si.singer_typeid = #{singerTypeId}
+		</if>
+		ORDER BY s1.allPlayCount DESC
+		LIMIT #{startNum},6
+	</select>
+	
+	<!-- 获取全部歌手个数 -->
+	<select id="findAllCount" resultType="int">
+		SELECT 
+			count(id)
+		FROM singer si
+		WHERE 1 = 1
+		<if test="firstName != null and firstName != ''">
+			AND si.firstname = #{firstName}
+		</if>
+		<if test="sex != null and sex != ''">
+			AND si.sex = #{sex}
+		</if>
+		<if test="singerTypeId != null">
+			AND si.singer_typeid = #{singerTypeId}
+		</if>
+	</select>
+</mapper>

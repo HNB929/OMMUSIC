@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>歌手详情</title>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" href="css/bootstrap-responsive.min.css" />
+		<link rel="stylesheet" href="css/fullcalendar.css" />
+		<link rel="stylesheet" href="css/matrix-style.css" />
+		<link rel="stylesheet" href="css/matrix-media.css" />
+		<link rel="stylesheet" href="css/jquery.gritter.css" />
+		
+		<link rel="stylesheet" type="text/css" href="singerInfo_files/reset.css">
+		<link rel="stylesheet" href="singerInfo_files/jquery.mCustomScrollbar.css">
+		<link rel="stylesheet" href="singerInfo_files/common.css">
+		<link rel="stylesheet" href="singerInfo_files/player.css">
+		<link rel="stylesheet" type="text/css" href="singerInfo_files/artistContent.css">
+		
+		<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+		<script src="dist/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+		
+		<script type="text/javascript">
+			$(function(){
+				console.log("页面加载！");
+				
+				// 1.获取上个页面传过来的参数
+				var singerId = getQueryString("singerId"); 
+				if(singerId == '' || singerId == 'undefined' || singerId == null){
+					alert("歌手编号为空！");
+					// 返回上个页面
+					history.go(-1);
+				}
+				/**
+				 * 获取请求参数内容
+				 * @param {Object} str
+				 */
+				function getQueryString(str) {
+					var result = window.location.search.match(new RegExp("[\?\&]" + str +
+						"=([^\&]+)", "i"));
+					if(result == null || result.length < 1) {
+						return "";
+					}
+					return result[1];
+				}
+				
+				
+				// 2.获取全部有效歌手类别信息
+				findValidSingerType();
+				/**
+				 * 获取全部有效歌手类型信息，追加在页面显示
+				 */
+				function findValidSingerType(){
+					$.ajax({
+						url: "http://localhost:8080/OMmusic/singerType/findIsValid",
+						contentType: "application/json;charset=utf-8",
+						dataType: "json",
+						type: "get",
+						async : "false",
+						success: function(data) {
+							$.each(data.data,function(index,singerType){
+								$("#singerType").append(
+									"<option value="+ singerType.id +">"+ singerType.name +"</option>" 
+								)
+							});
+						},
+					});
+				}
+				
+				
+				// 3.根据歌手编号获取歌手信息
+				findSingerByPrimaryKey(singerId);
+				/**
+				 * 根据歌手主键获取歌手信息
+				 * @param {Object} singerId
+				 */
+				function findSingerByPrimaryKey(singerId){
+					$.ajax({
+						url: "http://localhost:8080/OMmusic/singer/findByPrimaryKey",
+						contentType: "application/json;charset=utf-8",
+						data: {"singerId" : singerId},
+						dataType: "json",
+						type: "get",
+						success: function(data) {
+							var singer = data.data
+							console.log(singer);
+							// 把获取到的值在界面显示
+							$("#name").val(singer.name);
+							$(".singerName").html(singer.name);
+							$("#alias").val(singer.alias);
+							$("#language").val(singer.language);
+							$("#birthday").val(singer.birthday);
+							$("#height").val(singer.height);
+							$("#sex").val(singer.sex);
+							$("#nation").val(singer.nation);
+							$("#birthplace").val(singer.birthplace);
+							$("#constellation").val(singer.constellation);
+							$("#weight").val(singer.weight);
+							$("#singerPicture").attr("src",singer.picture);
+							$("#picture").val(singer.picture);
+							$("#singerType").val(singer.singer_typeid);
+							$("#job").val(singer.job);
+							$("#company").val(singer.company);
+							$("#representative").val(singer.representative);
+							$("#school").val(singer.school);
+							$("#firstname").val(singer.firstname);
+							$("#isValid").val(singer.remark);
+						},
+					});
+				}
+				
+				
+				// 3.保存按钮绑定事件
+				$("#confirmSave").on("click",function(){
+					console.log("singerId = "+singerId)
+					// 3.1 执行保存操作
+					$.ajax({
+						url: "http://localhost:8080/OMmusic/singer/update",
+						contentType: "application/json;charset=utf-8",
+ 						data: {
+							"id" : singerId,
+							"name" : $("#name").val(),
+							"alias" : $("#alias").val(),
+							"language" : $("#language").val(),
+							"birthday" : $("#birthday").val(),
+							"height" : $("#height").val(),
+							"sex" : $("#sex").val(),
+							"nation" : $("#nation").val(),
+							"birthplace" : $("#birthplace").val(),
+							"constellation" : $("#constellation").val(),
+							"weight" : $("#weight").val(),
+							"picture" : $("#picture").val(),
+							"singer_typeid" : $("#singerType").val(),
+							"job" : $("#job").val(),
+							"company" : $("#company").val(),
+							"representative" : $("#representative").val(),
+							"school" : $("#school").val(),
+							"firstname" : $("#firstname").val(),
+							"remark" : $("#isValid").val()
+						}, 
+						dataType: "json",
+						type: "get",
+						success: function(data) {
+							console.log(data)
+							if (data.success == false) {
+								alert(data.msg);
+							} else{
+								alert(data.msg);
+								history.go(0);
+							}
+						},
+					});
+				});
+				
+			});
+		</script>
+	</head>
+	<body>
+
+		<!-- 仪表盘 开始 -->
+		<div id="header">
+			<h1><a href="dashboard.html">欧米音乐</a></h1>
+		</div>
+		<!-- 仪表盘 结束 -->
+
+		<!--退出登录 开始-->
+		<div id="user-nav" class="navbar navbar-inverse">
+			<ul class="nav">
+				<li class=""><a href="http://localhost:8080/OMmusic/removeUser"><i class="icon icon-share-alt"></i> <span class="text">退出登录</span></a></li>
+			</ul>
+		</div>
+		<!--退出登录 结束-->
+
+		<!--菜单 开始-->
+		<div id="sidebar">
+			<a href="#" class="visible-phone"><i class="icon icon-home"></i> 欧米音乐</a>
+			<ul>
+				<li><a href="index-song.html"><i class="icon icon-home"></i> <span>歌曲信息管理</span></a> </li>
+				<li class="active"> <a href="index-singer.html"><i class="icon icon-signal"></i> <span>歌手信息管理</span></a> </li>
+				<li> <a href="index-songtype.html"><i class="icon icon-inbox"></i> <span>歌曲类别管理</span></a> </li>
+				<li><a href="index-singertype.html"><i class="icon icon-th"></i> <span>歌手类别管理</span></a></li>
+			</ul>
+		</div>
+		<!--菜单 结束-->
+
+		<!--内容 开始-->
+		<div id="content">
+			<div class="container-fluid">
+				<!-- 按钮 开始 -->
+				<div class="quick-actions_homepage"> </div>
+				<a href="index-singer.html" role="button" class="btn btn-success">返 回</a>
+				<!-- 按钮 结束 -->
+				<!-- 数据列表开始 -->
+				<div class="row-fluid">
+					<div class="widget-box">
+						<div class="widget-title bg_lg">
+							<h5>详细信息</h5>
+						</div>
+
+						<!-- 内容开始 -->
+						<div id="artistContent">
+							<!-- 歌手标签 start -->
+							<div class="artistTop" data-artistid="336">
+								<img src="" class="lazyLoad" title="歌手图片" id="singerPicture">
+								<input type="hidden" id="picture" value="" />
+								<div class="tab">
+									<h1 class="singerName"></h1>
+								</div>
+							</div>
+							<!-- 歌手标签  end -->
+
+							<!-- 歌手详细信息 开始-->
+							<div id="conBox">
+								<div id="disport" class="con" style="display: block;">
+									<div id="artistInfo">
+										<div class="title_">
+											<i></i>
+											<h2>基本信息</h2>
+										</div>
+										<table>
+											<tbody>
+												<tr style="background: rgb(242, 242, 246);">
+													<td>姓名： <input type="text" value="" id="name"/></td>
+													<td>性别： <input type="text" value="" id="sex"/></td>
+												</tr>
+												<tr>
+													<td>别名： <input type="text" value="" id="alias"/></td>
+													<td>语言： <input type="text" value="" id="language"/></td>
+												</tr>
+												<tr style="background: rgb(242, 242, 246);">
+													<td>生日： <input type="text" value="" id="birthday"/></td>
+													<td>星座： <input type="text" value="" id="constellation"/></td>
+												</tr>
+												<tr >
+													<td>身高： <input type="text" value="" id="height"/></td>
+													<td>体重： <input type="text" value="" id="weight"/></td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+									<div id="introduce">
+										<div class="title_">
+											<i></i>
+											<h2>个人简介</h2>
+										</div>
+										<p>
+											<table border="0px" style="width: 50%;">
+												<tr>
+													<td>国籍:</td>
+													<td><input type="text" value="" id="nation"/></td>
+												</tr>
+												<tr>
+													<td>出生地:</td>
+													<td><input type="text" value="" id="birthplace"/></td>
+												</tr>
+												<tr>
+													<td>职业:</td>
+													<td><input type="text" value="" id="job"/></td>
+												</tr>
+												<tr>
+													<td>经纪公司:</td>
+													<td><input type="text" value="" id="company"/></td>
+												</tr>
+												<tr>
+													<td>代表作品:</td>
+													<td><input type="text" value="" id="representative"/></td>
+												</tr>
+												<tr>
+													<td>毕业院校:</td>
+													<td><input type="text" value="" id="school"/></td>
+												</tr>
+												<tr>
+													<td>首字母:</td>
+													<td><input type="text" value="" id="firstname"/></td>
+												</tr>
+												<tr>
+													<td>歌手类型:</td>
+													<td>
+														<select id="singerType">
+														</select>
+													</td>
+												</tr>
+												<tr>
+													<td>是否有效:</td>
+													<td>
+														<select id="isValid">
+															<option value="1">有效</option>
+															<option value="0">无效</option>
+														</select>
+													</td>
+												</tr>
+											</table>
+										</p>
+									</div>
+									<a href="index-singer.html" role="button" class="btn btn-large btn-success">返 回</a>
+									<button type="button" class="btn btn-large btn-primary" id="confirmSave">保存修改</button>
+								</div>
+							</div>
+							<!-- 歌手详细信息 结束 -->
+						</div>
+						<!-- 内容 结束 -->
+					</div>
+				</div>
+				<!--数据列表 结束-->
+			</div>
+			
+		</div>
+		</div>
+		<!--内容 结束-->
+
+		<!-- 版权 开始 -->
+		<div class="row-fluid">
+			<div id="footer" class="span12">
+				2019 &copy; 我们做的都队
+			</div>
+		</div>
+		<!-- 版权 结束 -->
+
+	</body>
+</html>

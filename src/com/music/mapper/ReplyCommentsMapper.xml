@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.music.dao.ReplyCommentsDao">
+	
+	<!-- 根据评论编号获取全部回复评论信息 -->
+	<select id="findByCommentsId" parameterType="map" resultType="com.music.bean.ReplyCommentModel">
+		SELECT 
+			rc.*,
+			us.username AS userName,
+			us.picture AS userPicture
+		FROM reply_comment rc
+		LEFT JOIN users us ON us.`id` = rc.userid
+		WHERE 1 = 1
+		AND rc.commentsid = #{commentsId}
+		ORDER BY rc.time DESC
+	</select>
+
+	<insert id="insert" parameterType="com.music.bean.ReplyCommentModel">
+		INSERT INTO reply_comment(
+			id,
+			content,
+			time,
+			commentsid,
+			userid,
+			remark
+		)VALUES(
+			#{id},
+			#{content},
+			#{time},
+			#{commentsid},
+			#{userid},
+			#{remark}
+		)
+	</insert>
+</mapper>

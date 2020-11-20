@@ -1,0 +1,623 @@
+@charset "utf-8";
+
+.ugcBox .scrollbar {
+	overflow: auto;
+	height: 462px;
+	overflow-x: hidden
+}
+
+.ugcBox .scrollbar::-webkit-scrollbar {
+	width: 6px;
+	height: 6px;
+	background-color: #f5f5f5
+}
+
+.ugcBox .scrollbar::-webkit-scrollbar-track {
+	-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+	border-radius: 3px;
+	background-color: #f5f5f5
+}
+
+.ugcBox .scrollbar::-webkit-scrollbar-thumb {
+	border-radius: 3px;
+	background-color: #b5b5b5
+}
+
+textarea {
+	width: 100%;
+	height: 69px;
+	resize: none;
+	border: 0;
+	outline: 0;
+	overflow: hidden;
+	background: 0
+}
+
+input.intInput:-webkit-autofill {
+	-webkit-box-shadow: 0 0 0 1000px #fff inset;
+	border: 1px solid #ddd;
+	height: 28px !important;
+	line-height: 28px !important;
+	width: 230px !important;
+	border-radius: 3px
+}
+
+.radius {
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	border: 1px solid #ddd;
+	padding: 0 9px;
+	background: 0;
+	margin-left: 5px
+}
+
+.radius20 {
+	-moz-border-radius: 20px;
+	-webkit-border-radius: 20px;
+	border-radius: 20px
+}
+
+.intInput {
+	float: left;
+	width: 230px;
+	height: 28px;
+	line-height: 28px
+}
+
+.boxShadow {
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	border-radius: 4px;
+	-webkit-box-shadow: 0 6px 9px rgba(34, 31, 26, .27);
+	-moz-box-shadow: 0 6px 9px rgba(34, 31, 26, .27);
+	box-shadow: 0 6px 9px rgba(34, 31, 26, .27)
+}
+
+.ugcBox {
+	width: 578px;
+	background: #fafafa;
+	padding-bottom: 40px;
+	overflow: hidden;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	margin-left: -289px;
+	z-index: 3
+}
+
+.ugcBox .isFocus {
+	border-color: #a8d3fc
+}
+
+.topBox {
+	margin: 0 0 28px 20px;
+	width: 539px;
+	height: 56px;
+	line-height: 56px;
+	border-bottom: 1px solid #eee
+}
+
+.topBox h1 {
+	float: left;
+	font-size: 14px;
+	font-weight: 400
+}
+
+.close, .closeIframe, .closeWindow {
+	float: right;
+	width: 12px;
+	height: 12px;
+	margin-top: 20px;
+	background:
+		url(http://www.kuwo.cn/static/image/web/homePage/ugc/close.png)
+}
+
+.close:hover, .closeIframe:hover, .closeWindow:hover {
+	background:
+		url(http://www.kuwo.cn/static/image/web/homePage/ugc/closeHover.png)
+}
+
+.line {
+	margin: 0 0 10px 19px;
+	float: left;
+	width: 100%;
+	color: #333
+}
+
+.line .lable {
+	float: left;
+	width: 97px;
+	line-height: 28px;
+	text-align: right
+}
+
+.ugcBox .selectBox {
+	float: left;
+	width: 150px;
+	background:
+		url(http://www.kuwo.cn/static/image/web/homePage/ugc_icon.png) -193px
+		-125px;
+	cursor: pointer;
+	position: relative;
+	z-index: 12
+}
+
+.ugcBox .selectBox span {
+	float: left;
+	width: 130px;
+	height: 28px;
+	line-height: 28px
+}
+
+.ugcBox .selectBox ul {
+	display: none;
+	position: absolute;
+	top: 31px;
+	left: 5px;
+	width: 148px;
+	border: 1px solid #e6e6e6;
+	border-top: 0;
+	background: #fafafa
+}
+
+.ugcBox .selectBox ul li {
+	height: 26px;
+	line-height: 26px;
+	cursor: pointer;
+	text-indent: 10px
+}
+
+.ugcBox .selectBox ul li.active {
+	background: #f7f7f7
+}
+
+.textareaBox {
+	float: left;
+	border: 1px solid #ddd;
+	overflow: hidden;
+	padding: 5px;
+	width: 327px;
+	height: 88px
+}
+
+.word {
+	color: #999;
+	font-size: 12px;
+	line-height: 25px;
+	float: right !important
+}
+
+a.fileBtnBg {
+	float: left;
+	background: #fff;
+	width: 78px;
+	height: 23px;
+	position: relative;
+	overflow: hidden;
+	border: 1px solid #ddd;
+	border-radius: 12px;
+	text-align: center;
+	line-height: 23px;
+	color: #666;
+	margin: 3px 0 0 10px
+}
+
+input.fileBtn {
+	position: absolute;
+	right: 0;
+	top: 0;
+	font-size: 100px;
+	opacity: 0;
+	filter: alpha(opacity = 0)
+}
+
+.uploadify {
+	position: absolute;
+	text-indent: -9999em;
+	top: 0;
+	left: 0
+}
+
+.tips {
+	color: #999
+}
+
+.bottomTips {
+	float: left;
+	margin-left: 102px;
+	width: 337px
+}
+
+.rightTips {
+	margin-left: 10px;
+	line-height: 28px
+}
+
+.sureUp {
+	float: left;
+	width: 260px;
+	height: 40px;
+	line-height: 40px;
+	background: #f0aa00;
+	color: #fff;
+	font-size: 16px;
+	text-align: center;
+	margin: 8px 0 0 160px;
+	cursor: pointer;
+	outline: 0
+}
+
+.special {
+	margin: 16px 0 20px 10px;
+	display: block;
+	font-size: 14px
+}
+
+.icon {
+	float: left;
+	margin-left: 30px;
+	width: 80px;
+	text-align: center
+}
+
+.icon_1 {
+	margin-left: 117px
+}
+
+.icon span {
+	display: block;
+	color: #666;
+	margin-top: 6px
+}
+
+.time {
+	cursor: text
+}
+
+.musicNameList {
+	width: 300px
+}
+
+.musicNameList .intInput {
+	margin: 0 0 10px 120px
+}
+
+.login {
+	width: 590px;
+	display: none
+}
+
+.login input.intInput:-webkit-autofill {
+	-webkit-box-shadow: 0 0 0 1000px #fff inset;
+	border: 1px solid #ddd;
+	height: 38px !important;
+	line-height: 38px !important;
+	width: 240px !important;
+	border-radius: 3px
+}
+
+.login .topBox {
+	width: 550px;
+	margin-bottom: 20px
+}
+
+.login .left {
+	float: left;
+	width: 300px;
+	border-right: 1px solid #ddd;
+	margin-left: 20px;
+	display: inline
+}
+
+.login .lable {
+	float: left;
+	margin: 0 0 20px 17px;
+	font-size: 14px;
+	color: #333
+}
+
+.login .left input {
+	margin: 0 0 15px 10px;
+	height: 38px;
+	line-height: 38px;
+	font-size: 16px;
+	background: #fff
+}
+
+.login .left input.verifyCode {
+	width: 95px;
+	float: left;
+	margin-right: 17px
+}
+
+.login .left .verifyImg {
+	float: left
+}
+
+.leftLine {
+	float: left;
+	width: 260px;
+	margin-left: 10px;
+	color: #666;
+	font-size: 14px
+}
+
+.leftLine a {
+	float: right;
+	color: #666
+}
+
+.checkBoxLogin {
+	float: left;
+	cursor: pointer;
+	width: 16px;
+	height: 16px;
+	background:
+		url(http://www.kuwo.cn/static/image/web/homePage/ugc/checkBoxBg.jpg);
+	margin: 3px 10px 0 0
+}
+
+.checkBoxLogin.checked {
+	float: left;
+	width: 16px;
+	height: 16px;
+	background:
+		url(http://www.kuwo.cn/static/image/web/homePage/ugc/checkedBoxBg.jpg)
+}
+
+.autoLogin {
+	float: left
+}
+
+.left .sureUp {
+	margin: 10px 0 10px 10px
+}
+
+.login .right {
+	float: left;
+	width: 230px
+}
+
+.login .right .lable {
+	margin-left: 37px
+}
+
+.login .right a {
+	float: left;
+	width: 200px;
+	height: 40px;
+	background: #fff;
+	border: 1px solid #ddd;
+	line-height: 40px;
+	text-align: center;
+	color: #333;
+	font-size: 16px;
+	margin: 0 0 20px 30px
+}
+
+.login .right span {
+	float: left;
+	cursor: pointer
+}
+
+.login .right i {
+	float: left;
+	width: 18px;
+	height: 15px
+}
+
+.login .wbLogin i {
+	background:
+		url(http://www.kuwo.cn/static/image/web/homePage/ugc/wbIcon.jpg);
+	margin: 12px 10px 0 37px
+}
+
+.login .qqLogin i {
+	background:
+		url(http://www.kuwo.cn/static/image/web/homePage/ugc/qqIcon.jpg)
+		no-repeat;
+	margin: 13px 10px 0 58px
+}
+
+.login .noNum {
+	float: left;
+	text-indent: 129px
+}
+
+.login .noNum a {
+	color: #f0aa00
+}
+
+.login .zc_bot {
+	float: left;
+	margin: 0 0 0 13px;
+	line-height: 41px
+}
+
+.login .left .command {
+	float: left;
+	margin: 2px 10px 0 0
+}
+
+.login .zc_bot a {
+	color: #46b4e6
+}
+
+.connect {
+	position: relative;
+	z-index: 13
+}
+
+.albumConnect {
+	z-index: 15
+}
+
+.connectListBox {
+	position: absolute;
+	top: 30px;
+	left: 102px;
+	width: 248px;
+	border: 1px solid #d4d4d4;
+	background: #fafafa;
+	border-top: 0;
+	display: none
+}
+
+.connectListBox span {
+	width: 228px;
+	color: #666;
+	display: block;
+	line-height: 24px;
+	border-bottom: 1px solid #d4d4d4;
+	margin-left: 10px
+}
+
+.connectList li {
+	line-height: 26px;
+	padding: 0 10px;
+	cursor: pointer;
+	display: block;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis
+}
+
+.connectList li:hover {
+	background: #f7f7f7
+}
+
+.connectList li.active {
+	background: #f7f7f7
+}
+
+.connectPage {
+	border-top: 1px solid #d4d4d4
+}
+
+.connectPage a {
+	display: inline-block;
+	width: 112px;
+	text-align: center;
+	line-height: 20px;
+	margin: 2px 0;
+	color: #666
+}
+
+.connectPage a:first-child {
+	border-right: 1px solid #d4d4d4
+}
+
+.errorTips, .popBox {
+	width: 400px;
+	height: 140px;
+	background: #fafafa;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	margin: -70px 0 0 -200px;
+	border: 0;
+	line-height: 140px;
+	text-align: center;
+	font-size: 13px;
+	padding: 0;
+	color: #333;
+	z-index: 4
+}
+
+.errorTips .close, .popBox .close {
+	position: absolute;
+	top: 9px;
+	right: 9px;
+	margin: 0
+}
+
+.errorTips .down {
+	display: block;
+	width: 140px;
+	height: 40px;
+	background: #f1aa00;
+	line-height: 40px;
+	font-size: 14px;
+	margin: 0 auto;
+	margin-top: -20px
+}
+
+.loadShadow, .loginShadow {
+	display: none;
+	position: fixed;
+	left: 0;
+	top: 0;
+	background: #000;
+	width: 100%;
+	height: 100%;
+	opacity: .3;
+	filter: alpha(opaticy = 30);
+	-ms-filter: "alpha(opacity=30)";
+	filter: alpha(opacity = 30);
+	z-index: 3
+}
+
+.popBox img {
+	float: left;
+	margin: 53px 24px 0 86px
+}
+
+.popBox p {
+	float: left
+}
+
+.noResultSong, .noResultAlbum, .noResultMsg {
+	text-align: center;
+	line-height: 248px;
+	font-size: 16px;
+	color: #666
+}
+
+.noResultAlbum {
+	padding-bottom: 73px
+}
+
+.report {
+	display: none;
+	width: 460px;
+	margin: -232px 0 0 -230px
+}
+
+.report .topBox {
+	width: 419px
+}
+
+.reportBox {
+	width: 407px;
+	display: none;
+	margin-bottom: 20px;
+	position: relative;
+	left: 16px
+}
+
+.reportList li {
+	background: #fff;
+	width: 180px;
+	height: 38px;
+	line-height: 38px;
+	border: 1px solid #ddd;
+	float: left;
+	margin: 0 0 20px 20px;
+	text-align: center;
+	cursor: pointer;
+	font-size: 14px
+}
+
+.reportList li.active {
+	background: #f0aa00;
+	color: #fff;
+	border: 0;
+	width: 182px;
+	height: 40px;
+	line-height: 40px
+}
+
+.reportUp {
+	margin: 0 0 0 105px
+}

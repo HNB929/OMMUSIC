@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>歌手信息管理</title>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" href="css/bootstrap-responsive.min.css" />
+		<link rel="stylesheet" href="css/fullcalendar.css" />
+		<link rel="stylesheet" href="css/matrix-style.css" />
+		<link rel="stylesheet" href="css/matrix-media.css" />
+		<link rel="stylesheet" href="css/jquery.gritter.css" />
+		<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+		<script src="https://cdn.bootcss.com/jquery.form/4.2.1/jquery.form.min.js"></script>
+		<script src="dist/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function() {
+				console.log("页面加载！");
+
+				// 1.获取全部类别信息,追加在界面中
+				findList();
+				/**
+				 * 1.获取全部歌曲类型集合并追加在页面中显示
+				 * */
+				function findList() {
+					$.ajax({
+						url: "http://localhost:8080/OMmusic/singer/findAll",
+						contentType: "application/json;charset=utf-8",
+						dataType: "json",
+						type: "get",
+						success: function(data) {
+							console.log(data);
+							$.each(data.data,function(index,singer){
+								var isValid = "无效"
+								if(singer.remark == "1"){
+									isValid = "有效";
+								}
+								$("#singerInfo").append(
+									"<div class=\"col-md-12 column\">" +
+										"<div class=\"col-md-4\">"+
+											"<div class=\"thumbnail col-md-4\">"+
+												"<div style=\"width: 180px; float: left;\">"+
+													"<img style=\"width: 140px; height: 140px;\"  src=" + singer.picture + " />" + 
+												"</div>"+
+												"<div class=\"caption\">"+
+													"<h3>"+ singer.name +" </h3>"+
+													"<p> 性别："+ singer.sex +" </p>"+
+													"<p> 首字母："+ singer.firstname +" </p>"+
+													"<p> 歌手类别："+ singer.singerTypeName +" </p>"+
+													"<p> 代表作："+ singer.representative +" </p>"+
+													"<p> 是否有效："+ isValid +" </p>"+
+													"<p> "+
+														"<a class=\"btn btn-primary\" href=\"index-singer-detail.html?singerId="+singer.id+"\">详情</a>"+
+													"</p>"+
+												"</div>"+
+											"</div>"+
+										"</div>"+
+									"</div>"
+								);
+							});
+						},
+					});
+				}
+				
+				
+				// 2.获取全部有效歌手类别信息
+				findValidSingerType();
+				/**
+				 * 获取全部有效歌手类型信息，追加在页面显示
+				 */
+				function findValidSingerType(){
+					$.ajax({
+						url: "http://localhost:8080/OMmusic/singerType/findIsValid",
+						contentType: "application/json;charset=utf-8",
+						dataType: "json",
+						type: "get",
+						async : false,
+						success: function(data) {
+							$.each(data.data,function(index,singerType){
+								$("#singerType").append(
+									"<option value="+ singerType.id +">"+ singerType.name +"</option>" 
+								)
+							});
+						},
+					});
+				}
+				
+				// 3.确认添加按钮保存事件
+				$("#confirmAdd").on("click",function(){
+					console.log("点击确认添加按钮")
+					
+					$("#infoForm").ajaxSubmit(function(data){
+						console.log(data);
+						if(data.success == false){
+							alert(data.msg);
+						}else{
+							alert(data.msg);
+							history.go(0);
+						}
+					});
+				});
+				
+			});
+		</script>
+	</head>
+	<body>
+
+		<!-- 仪表盘开始 -->
+		<div id="header">
+			<h1><a href="dashboard.html">欧米音乐</a></h1>
+		</div>
+		<!-- 仪表盘结束 -->
+
+		<!--退出登录 开始-->
+		<div id="user-nav" class="navbar navbar-inverse">
+			<ul class="nav">
+				<li class=""><a href="http://localhost:8080/OMmusic/removeUser"><i class="icon icon-share-alt"></i> <span class="text">退出登录</span></a></li>
+			</ul>
+		</div>
+		<!--退出登录 结束-->
+
+		<!--菜单 开始-->
+		<div id="sidebar">
+			<a href="#" class="visible-phone"><i class="icon icon-home"></i> 欧米音乐</a>
+			<ul>
+				<li><a href="index-song.html"><i class="icon icon-home"></i> <span>歌曲信息管理</span></a> </li>
+				<li class="active"> <a href="index-singer.html"><i class="icon icon-signal"></i> <span>歌手信息管理</span></a> </li>
+				<li> <a href="index-songtype.html"><i class="icon icon-inbox"></i> <span>歌曲类别管理</span></a> </li>
+				<li><a href="index-singertype.html"><i class="icon icon-th"></i> <span>歌手类别管理</span></a></li>
+			</ul>
+		</div>
+		<!--菜单 结束-->
+
+		<!--内容 开始-->
+		<div id="content">
+			<div class="container-fluid">
+				<!--  添加按钮 开始  -->
+				<div class="quick-actions_homepage"> </div>
+				<a id="modal-832561" href="#modal-container-832561" role="button" class="btn btn-success" data-toggle="modal">添 加</a>
+				<!--添加按钮 结束-->
+
+				<!-- 数据列表开始 -->
+				<div class="row-fluid">
+					<div class="widget-box">
+						<div class="widget-title bg_lg"><span class="icon"><i class="icon-signal"></i></span>
+							<h5 style="font-size: 20px;">歌手信息</h5>
+						</div>
+						<div class="widget-content" id="singerInfo">
+							<!-- 内容 开始 -->
+							<!-- 内容 结束 -->
+						</div>
+					</div>
+				</div>
+				<!--数据列表 结束-->
+			</div>
+		</div>
+		<!--内容 结束-->
+
+		<!-- 版权 开始 -->
+		<div class="row-fluid">
+			<div id="footer" class="span12">
+				2019 &copy; 我们做的都队
+			</div>
+		</div>
+		<!-- 版权 结束 -->
+
+		<!-- 添加遮罩 开始 -->
+		<div class="container">
+			<div class="row clearfix">
+				<div class="col-md-12 column">
+					<div class="modal fade" id="modal-container-832561" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h4 class="modal-title" id="myModalLabel">
+										添加歌手信息：
+									</h4>
+								</div>
+								<!-- 遮罩内容 开始 -->
+								<div class="modal-body">
+									<!-- 添加歌曲内容 开始 -->
+									<div class="col-md-12 column">
+										<form id="infoForm" action="http://localhost:8080/OMmusic/singer/insert" method="post"  enctype="multipart/form-data" class="form-horizontal col-md-12 column">
+											<div class="">
+												<label class="control-label">姓名:</label>
+												<div class="controls">
+													<input type="text" class="span3" name="name" placeholder="请输入歌手姓名" />
+												</div>
+											</div>
+											<div class="">
+												<label class="control-label">性别:</label>
+												<div class="controls">
+													<select name="sex" class="span3">
+														<option value="男">男</option>
+														<option value="女">女</option>
+													</select>
+												</div>
+											</div>
+											<div class="">
+												<label class="control-label">代表作:</label>
+												<div class="controls">
+													<input type="text" class="span3" name="representative" />
+												</div>
+											</div>
+											<div class="">
+												<label class="control-label">首字母:</label>
+												<div class="controls">
+													<input type="text" class="span3" name="firstname"/>
+													<span class="help-block">提供歌手首字母，方便用户查找歌手信息</span> </div>
+											</div>
+											<div class="">
+												<label class="control-label">歌手类型:</label>
+												<div class="controls">
+													<select id="singerType" class="span3" name="singer_typeid">
+													</select>
+											</div>
+											<div class="">
+												<label class="control-label">选择图片：</label>
+												<div class="controls">
+													<input type="file" class="span3" name="pictureFile" />
+												</div>
+											</div>
+										</form>
+									</div>
+									<!-- 添加歌曲内容 结束 -->
+								</div>
+								<!-- 遮罩内容 结束 -->
+								<div class="modal-footer">
+									<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+									<button type="button" class="btn btn-primary" id="confirmAdd">确认添加</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 添加遮罩 结束 -->
+	</body>
+</html>

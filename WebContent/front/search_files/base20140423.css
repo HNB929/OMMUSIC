@@ -1,0 +1,79 @@
+@CHARSET "UTF-8";
+/* reset */
+*html .head .headwrap h1{ padding-left:25px;}
+*+html .head .headwrap h1{ padding-left:25px;}
+body{ font:14px "Microsoft Yahei",Helvetica,sans-serif,Arial; background:#f2f2f2;}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,input,textarea,p,th,td{ padding:0; margin:0}
+img{ border:0}
+em{ font-weight:normal; font-style:normal}
+ol,ul,li{ list-style:none}
+h1,h2,h3,h4,h5,h6{ font-weight:normal; font-size:100%}
+button,input,select,textarea{ font-size:100%;}
+input,button,textarea,select,optgroup,option{ font-family:inherit; font-size:inherit; font-style:inherit; font-weight:inherit;}
+.clearfix:after{content:"."; display:block; height:0; clear:both; visibility:hidden;}
+*html .clearfix{ zoom: 1;}
+*:first-child+html .clearfix { zoom:1;}
+.clear{ clear:both;}
+a{ text-decoration:none;}
+a:hover{ text-decoration:underline;}
+.fl{ float:left;}
+.fr{ float:right;}
+.hide{ display:none;}
+/* common */
+#header, #content, #footer{ width:100%; overflow:hidden;}
+#header{ background:#fff;}
+/* 通用背景 */
+.headwrap h1, .btn, .listen a, .listen a:hover, p.listen a, p.video a, p.share a, p.down a, .listen a:hover, p.video a:hover, p.share a:hover, p.down a:hover, .ranklist ul li, span.rank, .main .hotmusic ul li p.play, .butn, .butn:hover, .showbox p.tip, .btn_icon{ background:url('http://image.kuwo.cn/yueku/icon.png') no-repeat;}
+.bg{ background:#fff; width:100%;}
+.w1000{ width:1000px; margin:0 auto; position:relative;}
+.topbar{ background:#4e4e4e; height:22px; line-height:22px;}
+.head{ height:111px; overflow:hidden;}
+.menu{ height:33px; background:#1093d7; overflow:hidden;}
+.sate{ margin:12px 0; color:#7d7d7d;}
+.sate span{ font-size:20px; color:#000;}
+.sate p a{ color:#7d7d7d; font-size:14px;}
+.sate p a:hover, .sate p a.current{ color:#17b0ff;}
+.main, .mainwrap{ float:left; width:655px; padding:0 15px; background:#fff; margin-right:15px; padding-bottom:21px; overflow:hidden;}
+.mainwrap{ margin-right:5px;}
+.sider{ float:left; width:300px; overflow:hidden;}
+/* global 鍏ㄥ眬 */
+.topbar a{ color:#fff; font-size:12px; margin-right:10px;}
+.logo{ display:block; float:left; margin:22px 60px 24px 0;}
+.head .headwrap{ float:left; overflow:hidden; margin:11px 42px 0 0;}
+.head .headwrap h1{ height:36px; line-height:36px; border-bottom:1px solid #bce1f4; color:#319cda; font-size:18px; text-indent:30px;}
+.head .headwrap a{ margin-right:9px; display:inline-block; padding:5px 0 3px; color:#2f2f2f;}
+.head .headwrap a:hover{ color:#1093d7; text-decoration:underline;}
+.head .music{ width:124px;}
+.head .music p{ width:163px;}
+.head .singer, .head .picwrap, .head .down{ width:70px;}
+.head .singer p, .head .picwrap p, .head .down p{ width:97px;}
+.head .kuba, .head .yule{ width:98px;}
+.head .kuba p, .head .yule p{ width:125px;}
+.head .down{ margin:11px 0 0;}
+.head .music h1{ background-position:0 0;}
+.head .singer h1{ background-position:0 -36px;}
+.head .picwrap h1{ background-position:0 -72px;}
+.head .kuba h1{ background-position:0 -108px;}
+.head .yule h1{ background-position:0 -144px;}
+.head .down h1{ background-position:0 -180px;}
+.nav{ float:left; line-height:33px; font-size:14px; width:831px; overflow:hidden;}
+.nav a{ display:block; float:left; color:#fff; padding:0 19px;}
+.nav a.current{ background:#55c5ff;}
+.nav a:hover{ background:#55c5ff; text-decoration:none;}
+.search{ float:right; margin-top:4px;overflow:hidden;}
+.search .text{ width:110px; height:13px; padding:6px 5px; border:0 none; float:left; color:#666; font-size:12px;}
+.search .submit{ width:45px; height:25px; cursor:pointer; border:0 none; float:left; background:url(http://image.kuwo.cn/yinyue/artistnew/art2014/submit.gif) no-repeat;}
+/*foot*/
+#footer .copyright{ font-size:12px; width:100%; border-top:1px solid #cecece; margin-top:10px; text-align:center; padding:20px 0; color:#6a6a6a;}
+#footer .copyright p{ padding:5px 0;}
+#footer .copyright a{ color:#269;}
+.hzFrm{ width:1000px; margin:0 auto; padding:10px 0 5px; background:#fff; margin-top:10px;}
+.title{height:24px;overflow:hidden;}
+.hzFrm .title h1{ font-size:16px; color:#4c454c;}
+.hzFrm .title h1 span{ color:#aeacaf;}
+.hzFrm .title h1 em{ color:#1093d7; font-weight:bold; margin:0 5px;}
+.hzFrm .link{ padding:0 0 0 10px;}
+.hzFrm .link a{ font-size:12px; line-height:30px; margin-right:10px; white-space:nowrap; color:#1c67ac;}
+.hzFrm a.more{ font-size:12px; color:#7f7e7e;}
+.hzFrm .title h1 span.bold{ color:#020202; margin:0 5px; font-size:12px;}
+.h10{ height:10px; overflow:hidden; font-size:0; clear:both;}

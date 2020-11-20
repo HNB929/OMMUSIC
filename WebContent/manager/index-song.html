@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>歌曲信息管理</title>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" href="css/bootstrap-responsive.min.css" />
+		<link rel="stylesheet" href="css/fullcalendar.css" />
+		<link rel="stylesheet" href="css/matrix-style.css" />
+		<link rel="stylesheet" href="css/matrix-media.css" />
+		<link rel="stylesheet" href="css/jquery.gritter.css" />
+		<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+		<script src="https://cdn.bootcss.com/jquery.form/4.2.1/jquery.form.min.js"></script>
+		<script src="dist/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function(){
+				console.log("页面加载！");
+				
+				var pageNum = 1
+				var pageSize = 10
+				// 1.分页获取歌曲信息,追加在界面中
+				findList(pageNum,pageSize);
+				/**
+				 * 获取全部歌曲类型集合并追加在页面中显示
+				 * */
+				function findList(paramPageNum , paramPageSize) {
+					// 移除歌曲列表
+					$("#songInfoTable tr:gt(0)").remove();
+					$.ajax({
+						url: "http://localhost:8080/OMmusic/song/findAll",
+						contentType: "application/json;charset=utf-8",
+						dataType: "json",
+						data: {
+							pageNum : paramPageNum,
+							pageSize : paramPageSize
+						},
+						type: "get",
+						success: function(data) {
+							console.log(data);
+							
+							$("#total").html(data.total);
+							
+							// 1.追加歌曲信息
+							$.each(data.data,function(index,song){
+								var isValid = "无效"
+								if(song.remark == "1"){
+									isValid = "有效";
+								}
+								$("#songInfoTable").append(
+									"<tr>" +
+										"<td>"+(index+1)+"</td>"+
+										"<td>"+song.name+"</td>"+
+										"<td>"+song.singerName+"</td>"+
+										"<td>"+song.songTypeName+"</td>"+
+										"<td>"+song.duration+"</td>"+
+										"<td>"+song.count+"</td>" + 
+										"<td>"+song.mp3+"</td>"+
+										"<td>"+song.lyric+"</td>"+
+										"<td>"+song.time+"</td>"+
+										"<td>"+isValid+"</td>"+
+										"<input type='hidden' value="+song.id+" />"+
+										"<input type='hidden' value="+song.singerid+" />"+
+										"<input type='hidden' value="+song.song_typeid+" />"+
+										"<input type='hidden' value="+song.remark+" />"+
+										"<td style=\"width: 100px;\">"+
+											"<a "+
+												"href=\"#modal-container-832562\" "+
+												"role=\"button\" "+
+												"class=\"updateButton btn btn-primary\""+
+												"data-toggle=\"modal\" >修 改</a>"+
+										"</td>"+
+									"</tr>"
+								);
+							});
+							pageNum = data.pageNum;
+							pageSize = data.pageSize;
+							// 2.追加分页信息
+							$("#pageInfo li").remove();
+							if(pageNum == 1){
+								$("#pageInfo").append(
+									"<li><a id='prevPage'>Prev</a></li>"+
+									"<li class=\"active\"> <a>"+pageNum+"</a> </li>"+
+									"<li><a id='pageNumAdd'><input type='hidden' value='"+(pageNum+1)+"' />"+(pageNum+1)+"</a></li>"+
+									"<li><a id='nextPage'><input type='hidden' value='"+(pageNum+1)+"' />Next</a></li>"
+								);
+							}else if(pageNum == data.allPage){
+								$("#pageInfo").append(
+									"<li><a id='prevPage'><input type='hidden' value='"+(pageNum-1)+"' />Prev</a></li>"+
+									"<li><a id='pageNumSub'><input type='hidden' value='"+(pageNum-1)+"' />"+(pageNum-1)+"</a></li>"+
+									"<li class=\"active\"> <a>"+pageNum+"</a> </li>"+
+									"<li><a id='nextPage'>Next</a></li>"
+								);
+							}else{
+								$("#pageInfo").append(
+									"<li><a id='prevPage'><input type='hidden' value='"+(pageNum-1)+"' />Prev</a></li>"+
+									"<li><a id='pageNumSub'><input type='hidden' value='"+(pageNum-1)+"' />"+(pageNum-1)+"</a></li>"+
+									"<li class=\"active\"> <a>"+pageNum+"</a> </li>"+
+									"<li><a id='pageNumAdd'><input type='hidden' value='"+(pageNum+1)+"' />"+(pageNum+1)+"</a></li>"+
+									"<li><a id='nextPage'><input type='hidden' value='"+(pageNum+1)+"' />Next</a></li>"
+								);
+							}
+							
+							// 3.分页按钮绑定事件
+							$("#nextPage,#prevPage,#pageNumSub,#pageNumAdd").on("click",function(){
+								// 2.1 获取页码 
+								var currentPageNum = $(this).children("input").val();
+								if(currentPageNum != undefined){
+									// 2.2 重新添加歌曲列表
+									findList(currentPageNum,pageSize);
+								}
+							});
+							
+							// 4.修改,按钮绑定事件
+							$.each($(".updateButton"),function(){
+								$(this).on("click",function(){
+									// 4.1 追加 歌手列表和歌曲类型列表
+									appendSingerAndSongType("#updateSingerId","#updateSongTypeId");
+									var id = $("#updateSongId").val($(this).parent("td").prev("input").prev("input").prev("input").prev("input").val());
+									var name = $("#updateSongName").val($(this).parent("td").parent("tr").children("td").next("td").html());
+									var time = $("#updateTime").val($(this).parent("td").prev("input").prev("input").prev("input").prev("input").prev("td").prev("td").html());
+									var lyric = $("#updateLyric").val($(this).parent("td").prev("input").prev("input").prev("input").prev("input").prev("td").prev("td").prev("td").html());
+									var mp3 = $("#updateMp3").val($(this).parent("td").prev("input").prev("input").prev("input").prev("input").prev("td").prev("td").prev("td").prev("td").html());
+									var count = $("#updateCount").val($(this).parent("td").prev("input").prev("input").prev("input").prev("input").prev("td").prev("td").prev("td").prev("td").prev("td").html());
+									var duration = $("#updateDuration").val($(this).parent("td").prev("input").prev("input").prev("input").prev("input").prev("td").prev("td").prev("td").prev("td").prev("td").prev("td").html());
+									var singerid = $("#updateSingerId").val($(this).parent("td").prev("input").prev("input").prev("input").val());
+									var song_typeid = $("#updateSongTypeId").val($(this).parent("td").prev("input").prev("input").val());
+									var remark = $("#updateRemark").val($(this).parent("td").prev("input").val());
+									
+									// 4.2 确认修改按钮绑定事件
+									$("#confirmUpdate").on("click",function(){
+										$.ajax({
+											url: "http://localhost:8080/OMmusic/song/update",
+											data: {
+												id: id.val(),
+												name: name.val(),
+												time: time.val(),
+												lyric: lyric.val(),
+												mp3: mp3.val(),
+												count: count.val(),
+												duration: duration.val(),
+												singerid:singerid.val(),
+												song_typeid: song_typeid.val(),
+												remark:remark.val()
+											},
+											contentType: "application/json;charset=utf-8",
+											dataType: "json",
+											type: "get",
+											success: function(data) {
+												console.log(data);
+												if(data.success == false){
+													alert(data.msg);
+												}else{
+													alert(data.msg);
+													//  重新添加歌曲列表
+													
+													findList(pageNum,pageSize);
+												}
+											},
+										});
+									});
+								});	
+							});
+
+						},
+					});
+				}
+				
+				// 2.添加按钮绑定事件
+				$("#modal-832561").on("click",function(){
+					appendSingerAndSongType("#addSingerId","#addSongTypeId");
+				});
+				
+				
+				// 3.确认添加按钮绑定事件
+				$("#confirmAdd").on("click",function(){
+					console.log("点击确认添加按钮")
+					
+					$("#infoForm").ajaxSubmit(function(data){
+						console.log(data);
+						if(data.success == false){
+							alert(data.msg);
+						}else{
+							alert(data.msg);
+							findList(pageNum,pageSize);
+						}
+					});
+				});
+				
+				
+				/**
+				 *  追加歌手信息和歌曲类型信息
+				 */
+				function appendSingerAndSongType($singerId,$songTypeId){
+					$.ajax({
+						url: "http://localhost:8080/OMmusic/singer/findIsValid",
+						contentType: "application/json;charset=utf-8",
+						dataType: "json",
+						type: "get",
+						async: false,
+						success: function(data) {
+							$.each(data.data,function(index,singer){
+								$($singerId).append(
+									"<option value="+singer.id+">"+singer.name+"</option>"
+								);
+							})
+						},
+					});
+					$.ajax({
+						url: "http://localhost:8080/OMmusic/songType/findIsValid",
+						contentType: "application/json;charset=utf-8",
+						dataType: "json",
+						type: "get",
+						async: false,
+						success: function(data) {
+							$.each(data,function(index,songType){
+								$($songTypeId).append(
+									"<option value="+songType.id+">"+songType.name+"</option>"
+								);
+							});
+						},
+					});
+				}
+				
+				
+				
+			});
+		</script>
+	</head>
+	<body>
+		<!-- 仪表盘 开始 -->
+		<div id="header">
+			<h1><a href="dashboard.html">欧米音乐</a></h1>
+		</div>
+		<!-- 仪表盘 结束 -->
+
+		<!--退出登录 开始-->
+		<div id="user-nav" class="navbar navbar-inverse">
+			<ul class="nav">
+				<li class=""><a href="http://localhost:8080/OMmusic/removeUser"><i class="icon icon-share-alt"></i> <span class="text">退出登录</span></a></li>
+			</ul>
+		</div>
+		<!--退出登录 结束-->
+
+		<!--菜单 开始-->
+		<div id="sidebar"><a href="#" class="visible-phone"><i class="icon icon-home"></i> 欧米音乐</a>
+			<ul>
+				<li class="active"><a href="index-song.html"><i class="icon icon-home"></i> <span>歌曲信息管理</span></a> </li>
+				<li> <a href="index-singer.html"><i class="icon icon-signal"></i> <span>歌手信息管理</span></a> </li>
+				<li> <a href="index-songtype.html"><i class="icon icon-inbox"></i> <span>歌曲类别管理</span></a> </li>
+				<li><a href="index-singertype.html"><i class="icon icon-th"></i> <span>歌手类别管理</span></a></li>
+			</ul>
+		</div>
+		<!--菜单 结束-->
+
+		<!--内容 开始-->
+		<div id="content">
+			<div class="container-fluid">
+				<!--  添加按钮 开始  -->
+				<div class="quick-actions_homepage"> </div>
+				<a 
+					id="modal-832561" 
+					href="#modal-container-832561" 
+					role="button" 
+					class="btn btn-success" 
+					data-toggle="modal" >添 加</a>
+				<!--添加按钮 结束-->
+
+				<!-- 数据列表开始 -->
+				<div class="row-fluid">
+					<div class="widget-box">
+						<div class="widget-title bg_lg"><span class="icon"><i class="icon-signal"></i></span>
+							<h5 style="font-size: 20px;">歌曲信息</h5>
+						</div>
+						<div class="widget-content">
+							<table border="" width="100%" style="text-align: center;" id="songInfoTable">
+								<tr>
+									<th>序号</th>
+									<th>名称</th>
+									<th>原唱</th>
+									<th>类型</th>
+									<th>时长</th>
+									<th>播放次数</th>
+									<th>音频</th>
+									<th>歌词</th>
+									<th>上架时间</th>
+									<th>是否有效</th>
+									<th>操作</th>
+								</tr>
+							</table>
+						</div>
+						<div class="container">
+							<div class="pagination" style="text-align: right;">
+								<p style="font-size: 14px;">总歌曲数：<b id="total">0</b></p>
+								<ul id="pageInfo">
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--数据列表 结束-->
+			</div>
+		</div>
+		<!--内容 结束-->
+
+		<!-- 版权 开始 -->
+		<div class="row-fluid">
+			<div id="footer" class="span12">
+				2019 &copy; 我们做的都队
+			</div>
+		</div>
+		<!-- 版权 结束 -->
+
+		<!-- 修改遮罩 开始 -->
+		<div class="container">
+			<div class="row clearfix">
+				<div class="col-md-12 column">
+					<div class="modal fade" id="modal-container-832562" role="dialog" aria-labelledby="myModalLabel2" aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h4 class="modal-title" id="myModalLabel2">
+										修改歌曲信息:
+									</h4>
+								</div>
+								<!-- 遮罩内容 开始 -->
+								<div class="modal-body">
+									<!-- 歌曲内容 开始 -->
+										<div  class="col-md-12 column">
+											<form class="form-horizontal col-md-12 column">
+												<input type="hidden" id="updateSongId" value="" />
+												<input type="hidden" id="updateTime" value="" />
+												<input type="hidden" id="updateCount" value="" />
+												<input type="hidden" id="updateMp3" value="" />
+												<input type="hidden" id="updateLyric" value="" />
+												<div class="">
+													<label class="control-label">歌曲名称:</label>
+													<div class="controls">
+														<input type="text" class="span3" id="updateSongName" value=""/>
+													</div>
+												</div>
+												<div class="">
+													<label class="control-label">歌曲时长:</label>
+													<div class="controls">
+														<input type="text" class="span3" id="updateDuration" value=""/>
+													</div>
+												</div>
+												<div class="">
+													<label class="control-label">原唱：</label>
+													<div class="controls">
+														<select class="span3" id="updateSingerId">
+														</select>
+													</div>
+												</div>
+												<div class="">
+													<label class="control-label">歌曲类型：</label>
+													<div class="controls">
+														<select class="span3" id="updateSongTypeId">
+														</select>
+													</div>
+												</div>
+												<div class="">
+													<label class="control-label">是否有效：</label>
+													<div class="controls">
+														<select class="span3" id="updateRemark">
+															<option value ="1">有效</option>
+															<option value ="0">无效</option>
+														</select>
+													</div>
+												</div>
+											</form>
+										</div>
+									<!-- 歌曲内容 结束 -->
+								</div>
+								<!-- 遮罩内容 结束 -->
+								<div class="modal-footer">
+									<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+									<button type="button" class="btn btn-primary" id="confirmUpdate">确认修改</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 修改遮罩 结束 -->
+		
+		<!-- 添加遮罩 开始 -->
+		<div class="container">
+			<div class="row clearfix">
+				<div class="col-md-12 column">
+					<div class="modal fade" id="modal-container-832561" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<!--  -->
+									<h4 class="modal-title" id="myModalLabel">
+										添加歌曲信息:
+									</h4>
+								</div>
+								<!-- 遮罩内容 开始 -->
+								<div class="modal-body">
+									<!-- 添加歌曲内容 开始 -->
+										<div  class="col-md-12 column">
+											<form action="http://localhost:8080/OMmusic/song/insert" method="post"  enctype="multipart/form-data" class="form-horizontal col-md-12 column" id="infoForm">
+												<div class="">
+													<label class="control-label">歌曲名称:</label>
+													<div class="controls">
+														<input type="text" class="span3" name="name" />
+													</div>
+												</div>
+												<div class="">
+													<label class="control-label">歌曲时长:</label>
+													<div class="controls">
+														<input type="text" name="duration" class="span3" placeholder="格式分:秒"/>
+													</div>
+												</div>
+												<div class="">
+													<label class="control-label">原唱：</label>
+													<div class="controls">
+														<select class="span3" name="singerid" id="addSingerId">
+														</select>
+													</div>
+												</div>
+												<div class="">
+													<label class="control-label">歌曲类型：</label>
+													<div class="controls">
+														<select class="span3" name="song_typeid" id="addSongTypeId">
+														</select>
+													</div>
+												</div>
+												<div class="">
+													<label class="control-label">选择音频文件：</label>
+													<div class="controls">
+														<input type="file" name="mp3File" class="span3"/>
+													</div>
+												</div>
+												<div class="">
+													<label class="control-label">选择歌词文件：</label>
+													<div class="controls">
+														<input type="file" name="lyricFile" class="span3"/>
+													</div>
+												</div>
+											</form>
+										</div>
+									<!-- 添加歌曲内容 结束 -->
+								</div>
+								<!-- 遮罩内容 结束 -->
+								<div class="modal-footer">
+									<button type="button" class="btn btn-default" data-dismiss="modal">关 闭</button>
+									<button type="button" class="btn btn-primary" id="confirmAdd">确认添加</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 添加遮罩 结束 -->
+		
+	</body>
+</html>

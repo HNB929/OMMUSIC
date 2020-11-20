@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>歌手类别管理</title>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" href="css/bootstrap-responsive.min.css" />
+		<link rel="stylesheet" href="css/fullcalendar.css" />
+		<link rel="stylesheet" href="css/matrix-style.css" />
+		<link rel="stylesheet" href="css/matrix-media.css" />
+		<link rel="stylesheet" href="css/jquery.gritter.css" />
+		<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+		<script src="dist/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function(){
+				console.log("页面加载！");
+				
+				// 1.获取全部类别信息,追加在界面中
+				findSongTypeList();
+				
+				/**
+				 * 1.获取全部歌曲类型集合并追加在页面中显示
+				 * */
+				function findSongTypeList(){
+					$.ajax({
+						url: "http://localhost:8080/OMmusic/singerType/findAll",
+						contentType: "application/json;charset=utf-8",
+						dataType: "json",
+						type: "get",
+						success: function(data) {
+							// 1.获取全部类型列表,追加在界面显示
+							$.each(data, function(index, songType) {
+								var isValid = "有效";
+								if(songType.remark == '0'){
+									isValid = "无效";
+								}
+								$("#songTypeTable").append(
+									"<tr>" +
+										"<td>" + songType.id + "</td>"+
+										"<td>" + songType.name + "</td>"+
+										"<td>" + isValid + "</td>"+
+										"<td style='width: 100px;'>" + 
+											"<a id='modal-832562' "+
+												"href='#modal-container-832562'"+
+												"role='button'"+
+												"class='btn btn-primary modify'"+
+												"data-toggle='modal'"+
+											">修改</a>"+
+										"</td>"+
+									"</tr>"
+								);
+							});
+							
+							// 2. 修改按钮绑定时间
+							$.each($(".modify"),function(){
+								$(this).on("click",function(){
+									var isValid = $(this).parent("td").prev("td").html();
+									var songTypeName = $(this).parent("td").prev("td").prev("td").html();
+									var songTypeId = $(this).parent("td").prev("td").prev("td").prev("td").html();
+									$("#updateTypeId").val(songTypeId);
+									$("#updateTypeName").val(songTypeName);
+									$.each($(".updateIsValidValue"),function(){
+										if($(this).html() == isValid){
+											$(this).prop("selected","true");
+										}
+									})
+								});
+							});
+						},
+					});
+				}
+				
+				// 2.确认修改按钮绑定事件
+				$("#confirmModify").on("click",function(){
+					var songTypeId = $("#updateTypeId").val();
+					var songTypeName = $("#updateTypeName").val();
+					var remark = $("#updateIsValid").val();
+					$.ajax({
+						url: "http://localhost:8080/OMmusic/singerType/update",
+						data: {"id" : songTypeId,"name" : songTypeName,"remark" : remark},
+						contentType: "application/json;charset=utf-8",
+						dataType: "json",
+						type: "get",
+						success: function(data) {
+							console.log(data)
+							if(data.success == false){
+								// 显示错误内容
+								alert(data.msg);
+							}else{
+								// 页面刷新
+								alert(data.msg);
+								history.go(0);
+							}
+						}
+					});
+				});
+				
+				// 3.确认添加按钮绑定事件
+				$("#confirmAdd").on("click",function(){
+					var songTypeName = $("#addTypeName").val();
+					var remark = $("#addIsValid").val();
+					$.ajax({
+						url: "http://localhost:8080/OMmusic/singerType/insert",
+						data: {"name" : songTypeName,"remark" : remark},
+						contentType: "application/json;charset=utf-8",
+						dataType: "json",
+						type: "get",
+						success: function(data) {
+							console.log(data)
+							if(data.success == false){
+								// 显示错误内容
+								alert(data.msg);
+							}else{
+								// 页面刷新
+								alert(data.msg);
+								history.go(0);
+							}
+						}
+					});
+				});
+				
+			});
+		</script>
+	</head>
+	<body>
+		<!-- 仪表盘 开始 -->
+		<div id="header">
+			<h1><a href="dashboard.html">欧米音乐</a></h1>
+		</div>
+		<!-- 仪表盘 结束 -->
+
+
+		<!--退出登录 开始-->
+		<div id="user-nav" class="navbar navbar-inverse">
+			<ul class="nav">
+				<li class=""><a href="http://localhost:8080/OMmusic/removeUser"><i class="icon icon-share-alt"></i> <span class="text">退出登录</span></a></li>
+			</ul>
+		</div>
+		<!--退出登录 结束-->
+
+
+		<!--菜单 开始-->
+		<div id="sidebar"><a href="#" class="visible-phone"><i class="icon icon-home"></i> 欧米音乐</a>
+			<ul>
+				<li> <a href="index-song.html"><i class="icon icon-home"></i> <span>歌曲信息管理</span></a> </li>
+				<li> <a href="index-singer.html"><i class="icon icon-signal"></i> <span>歌手信息管理</span></a> </li>
+				<li> <a href="index-songtype.html"><i class="icon icon-inbox"></i> <span>歌曲类别管理</span></a> </li>
+				<li class="active"> <a href="index-singertype.html"><i class="icon icon-th"></i> <span>歌手类别管理</span></a></li>
+			</ul>
+		</div>
+		<!--菜单 结束-->
+
+
+		<!--内容 开始-->
+		<div id="content">
+			<div class="container-fluid">
+				<!--  添加按钮 开始  -->
+				<div class="quick-actions_homepage"></div>
+				<a id="modal-832561" href="#modal-container-832561" role="button" class="btn btn-success" data-toggle="modal">添 加</a>
+				<!--添加按钮 结束-->
+
+				<!-- 数据列表开始 -->
+				<div class="row-fluid">
+					<div class="widget-box">
+						<div class="widget-title bg_lg"><span class="icon"><i class="icon-signal"></i></span>
+							<h5 style="font-size: 20px;">歌手类别信息：</h5>
+						</div>
+						<div class="widget-content">
+							<table border="" width="100%" style="text-align: center;" id="songTypeTable">
+								<tr>
+									<th>编号</th>
+									<th>类别名称</th>
+									<th>是否有效</th>
+									<th>操作</th>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</div>
+				<!--数据列表 结束-->
+			</div>
+		</div>
+		<!--内容 结束-->
+
+
+		<!-- 版权 开始 -->
+		<div class="row-fluid">
+			<div id="footer" class="span12">
+				2019 &copy; 我们做的都队
+			</div>
+		</div>
+		<!-- 版权 结束 -->
+
+
+		<!-- 添加遮罩 开始 -->
+		<div class="container">
+			<div class="row clearfix">
+				<div class="col-md-12 column">
+					<div class="modal fade" id="modal-container-832561" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h4 class="modal-title" id="myModalLabel">
+										添加歌手类别：
+									</h4>
+								</div>
+								<!-- 遮罩内容 开始 -->
+								<div class="modal-body">
+									<!-- 添加内容 开始 -->
+									<div class="col-md-12 column">
+										<form class="form-horizontal col-md-12 column">
+											<div class="">
+												<label class="control-label">类别名称:</label>
+												<div class="controls">
+													<input type="text" class="span3" placeholder="请输入类别名称" id="addTypeName" />
+												</div>
+											</div>
+											<div class="">
+												<label class="control-label">是否有效</label>
+												<div class="controls">
+													<select class="span3" id="addIsValid">
+														<option value="1">有效</option>
+														<option value="0">无效</option>
+													</select>
+												</div>
+											</div>
+										</form>
+									</div>
+									<!-- 添加内容 结束 -->
+								</div>
+								<!-- 遮罩内容 结束 -->
+								<div class="modal-footer">
+									<button type="button" class="btn btn-default" data-dismiss="modal">关 闭</button>
+									<button type="button" class="btn btn-primary" id="confirmAdd">确认添加</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 添加遮罩 结束 -->
+
+
+		<!-- 修改遮罩 开始 -->
+		<div class="container">
+			<div class="row clearfix">
+				<div class="col-md-12 column">
+					<div class="modal fade" id="modal-container-832562" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h4 class="modal-title" id="myModalLabel">
+										修改歌手类别：
+									</h4>
+								</div>
+								<!-- 遮罩内容 开始 -->
+								<div class="modal-body">
+									<!-- 修改内容 开始 -->
+									<div class="col-md-12 column">
+										<form class="form-horizontal col-md-12 column">
+											<input type="hidden" id="updateTypeId" value=""/>
+											<div class="">
+												<label class="control-label">类别名称:</label>
+												<div class="controls">
+													<input type="text" class="span3" value="" placeholder="请输入类别名称" id="updateTypeName" />
+												</div>
+											</div>
+											<div class="">
+												<label class="control-label">是否有效</label>
+												<div class="controls">
+													<select class="span3" id="updateIsValid">
+														<option value="1" class="updateIsValidValue">有效</option>
+														<option value="0" class="updateIsValidValue">无效</option>
+													</select>
+												</div>
+											</div>
+										</form>
+									</div>
+									<!-- 修改内容 结束 -->
+								</div>
+								<!-- 遮罩内容 结束 -->
+								<div class="modal-footer">
+									<button type="button" class="btn btn-default" data-dismiss="modal">关 闭</button>
+									<button type="button" class="btn btn-primary" id="confirmModify">确认修改</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 修改遮罩 结束 -->
+	</body>
+</html>

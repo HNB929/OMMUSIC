@@ -1,0 +1,279 @@
+.bg{ background:url(http://image.kuwo.cn/www2014/new_icons.png) no-repeat;}
+h1.title{ font-size:26px; height:34px; line-height:34px; margin:10px 0; font-weight:normal;}
+h1.title a{ color:#0075bc;}
+h1.title a:hover{ text-decoration:none;}
+.ad{ width:1000px; margin:10px auto;}
+.ad1{ margin:52px 0 0;_margin-left:-10px;}
+p.musicName{ width:100%; text-align:center; height:20px; line-height:20px; overflow:hidden; margin-top:10px;}
+p.musicName a{ color:#333;}
+p.musicName a:hover{ color:#1093d7;}
+p.singerName a{ color:#828383;}
+a.img{ display:block;}
+.foot a{color:#1C67AC;}
+/* 轮播图 */
+#main { display: block; overflow: hidden; width:100%; min-width: 1000px; position: relative; background: #EFF4F5; }
+#index_b_hero { width: 1000px; height: 420px; margin: 0 auto; position: relative; }
+#index_b_hero img { width: 1000px; height: 420px; }
+#index_b_hero .heros { width: 1000; height: 420px; }
+#index_b_hero .hero-wrap { overflow: visible; position: absolute; }
+#index_b_hero .next, #index_b_hero .prev {background:url(http://image.kuwo.cn/www2014/empty.gif);  position: absolute; top: 0;  width: 1000px; height: 420px; filter:progid:DXImageTransform.Microsoft.gradient(enabled='true',startColorstr='#D8FFFFFF', endColorstr='#D8FFFFFF');background:rgba(255,255,255,0.60);}
+#index_b_hero .next:hover, #index_b_hero .prev:hover {filter:progid:DXImageTransform.Microsoft.gradient(enabled='true',startColorstr='#D8FFFFFF', endColorstr='#D8FFFFFF');background:rgba(255,255,255,0.65);}
+#index_b_hero .prev { left: -999px; }
+#index_b_hero .next { left: 1000px; }
+#index_b_hero .disabled { background-color: #eee; }
+#index_b_hero .hero { background: #000; position: absolute; top: 0; left: 0; width: 1000px; height: 420px; overflow: hidden; left: 2000px; }
+#index_b_hero .mask-right, #index_b_hero .mask-left { position: absolute; top: 50%; height: 133px; width: 35px; overflow: hidden; margin-top: -66px;}
+#index_b_hero .mask-right { left: 20px; }
+#index_b_hero .mask-left { right: 20px; }
+#index_b_hero .active { z-index: 2; left: 0;}
+/* 热门*/
+.tab_menu li a{ color:#1093d7;}
+.tab_menu li a:hover{ color:#333;}
+.tab_menu li.selected a{ color:#333; text-decoration:underline;}
+.hotWrap{ height:410px; overflow:hidden;}
+.hotWrap .left{ width:658px; margin-right:40px; overflow:hidden; margin-top:14px;}
+.hotWrap .right{ float:left; width:300px; overflow:hidden;}
+.weekSinger{ position:relative; width:300px; overflow:hidden;}
+.weekSinger h2{ font-size:18px; color:#0075bc; height:30px; line-height:30px; margin-bottom:4px;}
+.weekSinger .button{ position:absolute; top:0; right:0;}
+.weekSinger .button a{ display:block; width:21px; height:21px; line-height:1000px; overflow:hidden; float:left;}
+.weekSinger .button .prev{ background-position:0 -58px; margin-right:5px;}
+.weekSinger .button .next{ background-position:-21px -58px;}
+.weekSinger .content{ height:175px; position:relative; overflow:hidden;}
+.weekSinger .scroll{ position:absolute; top:0; left:0; width:900px;}
+.weekSinger .scroll .singer{ width:300px; height:175px; float:left;}
+.weekSinger .singerName{ height:16px; line-height:16px; font-size:14px; margin:5px auto; overflow:hidden;}
+.weekSinger .singerName a{ color:#0075bc;width:300px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;float:left;}
+.weekSinger .tips{ color:#656565; font-size:12px; height:20px; line-height:20px;}
+.hotSinger{ margin-bottom:25px; width:1000px; overflow:hidden;}
+.hotSinger ul{ width:1031px;}
+.hotSinger ul li{ float:left; margin-right:25px; width:122px;}
+.hotSinger ul li a.img{ width:118px; height:118px; border:2px solid #fff;}
+.hotSinger ul li a.img:hover{ border:2px solid #65c2f2;}
+.singerlist{ width:1000px; overflow:hidden;}
+.singerlist .list h2.tit{ background-position:13px 13px; color:#1093d7; font-size:15px; text-indent:26px;padding-top:5px;}
+.singerlist .list{ float:left; background:url(http://image.kuwo.cn/www2014/bg.jpg) repeat; width:492px; height:145px; overflow:hidden;}
+.singerlist .list p{ padding-left:13px;}
+.singerlist .list p a{ display:block; width:4em; float:left; margin:8px 10px 0 0; overflow:hidden; height:20px; line-height:20px; color:#333; _margin:7px 9px 0 0;}
+.singerlist .list p a:hover{ color:#1093d7;}
+.album,.mvalbum{ position:relative; width:1000px; overflow:hidden;}
+.album .tab_menu{ position:absolute; top:20px; left:135px;}
+.album .tab_menu ul li{ float:left; width:72px; height:14px; line-height:14px; text-align:center; border-right:1px dashed #a7a7a7; cursor:pointer;}
+.album .tab_menu ul li.noborder{ border:none;}
+.album .tab_div ul{ width:1020px;}
+.album .tab_div ul li{ float:left; width:155px; overflow:hidden; margin:0 14px 10px 0;}
+.album .tab_div ul li p.singerName{ font-size:12px; margin:2px 0;}
+.ablum .tab_div ul li p.singerName a{ color:#828383;}
+.mvalbum ul{ width:1032px;}
+.mvalbum ul li{ float:left; width:140px; overflow:hidden; position:relative; margin:0 32px 10px 0; position:relative;}
+.mvalbum ul li p{ margin:2px 0;}
+.mvalbum ul li p.time{ position:absolute; right:5px; top:55px; height:20px; line-height:20px; color:#fff; font-size:12px; font-weight:bold;}
+.mvalbum ul li p.singerName{ font-size:12px;}
+.mvalbum ul li p.singerName a{ color:#828383;}
+.mvalbum ul li p.singerName a:hover{ color:#1093d7;}
+.mvalbum ul li a.play{ display:block; position:absolute; top:0; left:50%; margin-left:-13px; top:25px; display:none;}
+.rank{ width:310px; overflow:hidden; position:relative; margin-right:25px;}
+.rank h2{ font-size:16px; color:#0075bc; margin-bottom:10px;}
+.rank h2 span{ color:#f27815;}
+.rank .tab_menu{ position:absolute; top:4px; right:0;}
+.rank .tab_menu li{ float:left; text-align:center; width:50px; height:14px; line-height:14px; border-right:1px solid #a7a7a7;}
+.rank .tab_menu li.noborder{ border:none;}
+.rank .tab_div{ height:300px; overflow:hidden; font-size:12px;}
+.rank .line{ height:30px; line-height:30px; overflow:hidden; background:url(http://image.kuwo.cn/www2014/line.gif) repeat-x left bottom;}
+.rank .line.current{ background:#f0f0f0;}
+.rank .line p.num{ width:20px; height:20px; line-height:20px; text-align:center; overflow:hidden; float:left; margin:5px 3px 0 0; background:#f0f0f0; color:#8c8c8c; border-radius:3px; font-size:12px; font-style:italic;}
+.rank .line p.topnum{ background:#f48a34; color:#fff;}
+.rank .line p.music span{ display:block; float:left; margin-right:10px; overflow:hidden;}
+.rank .line p.music a{ display:block; float:left; overflow:hidden;}
+.rank .line p.music span.m_name{ width:170px; text-indent:3px; color:#333;}
+.rank .line p.music span.m_name a{ color:#333;}
+.rank .top p.music span.m_name a{ color:#0075bc;}
+.rank .line p.music span.m_name:hover a{ color:#1093d7;}
+.rank .line p.music span.s_name{ width:70px; color:#828383;}
+.rank .line p.music span.s_name a{ color:#828383;}
+.rank .line p.music span.s_name a:hover{ color:#1093d7;}
+.rank .top p.music span.s_name a{ color:#f27815;}
+.rank .line p.music a.listen{ width:22px; height:17px; background-position:0 -30px; margin:0; margin-top:6px;}
+.rank .line p.music a.listen:hover{ background-position:-22px -30px;}
+.rank.m0{ margin:0;}
+.singerPic{ margin-bottom:5px;}
+.singerPic .hot{ width:300px; float:left; margin-right:15px;}
+.singerPic .other{ float:left; width:685px; overflow:hidden;}
+.singerPic .other ul{ width:700px;}
+.singerPic .other ul li{ float:left; margin:0 15px 10px 0; width:160px; height:120px; overflow:hidden; position:relative;}
+.singerPic p.tips{ height:25px; line-height:25px;}
+.singerPic p.tips a{ color:#fff;}
+.singerPic .hot p.tips{ background:#000; width:290px; padding:0 5px;}
+.singerPic .other p.tips{ background:url(http://image.kuwo.cn/www2014/tips.png); width:150px; padding:0 5px; position:absolute; left:0; bottom:0;}
+.musicWrap{ width:100%; overflow:hidden; margin-bottom:15px;}
+.musicWrap ul{ width:1014px;}
+.musicWrap ul li{ width:155px; overflow:hidden; float:left; font-size:12px; margin-right:14px;}
+.musicWrap p{ height:20px; line-height:20px; margin-top:5px; color:#808080; overflow:hidden;}
+.musicWrap p.musicName{ text-align:left;}
+.musicWrap p.musicName a{ color:#808080; margin:0;}
+.musicWrap p a{ color:#0e87c6; margin-left:2px;}
+.musicWrap p span{ color:#f30;}
+.musicWrap p.time{ background-position:-47px -31px; text-indent:15px;}
+.wrap{ height:314px; overflow:hidden; margin-bottom:10px;}
+.wrap h2{ font-size:26px; margin:13px 0 2px;}
+.wrap h2 a{ color:#0075bc;}
+.wrap h2 a:hover{ text-decoration:none;}
+.musiclist{ width:365px; margin-right:0px;}
+.musiclist p a{ display:inline-block; white-space:nowrap; color:#333; font-size:14px; background:#f0f0f0; padding:5px 12px; margin:0 16px 6px 0; border-radius:3px;}
+.musiclist p a.current, .musiclist p a:hover{ background:#0075bc; color:#fff;}
+.wrap .kuba{ width:310px; overflow:hidden; margin-right:25px;}
+.wrap .kuba ul li{ height:24px; line-height:24px; border-bottom:1px dashed #e2e2e2; text-indent:12px; overflow:hidden;background:url(http://image.kuwo.cn/www2014/icon_pot.gif) no-repeat 2px 10px}
+.wrap .kuba ul li.libg{ background-position:2px 13px;}
+.wrap .kuba ul li a{ color:#333;}
+.wrap .kuba ul li a:hover{ color:#1093d7;}
+.game h2{ color:#0075bc; font-size:18px; height:30px; line-height:30px; margin-bottom:10px;}
+.game h2 a{ color:#0075bc;}
+.game h2 a:hover{ text-decoration:none;}
+.gamelist{ width:632px; overflow:hidden; margin-right:68px;}
+.gamelist ul{ width:682px;}
+.gamelist ul li{ float:left; width:120px; margin:15px 50px 20px 0;}
+.game .singer{ width:300px; overflow:hidden;}
+.game .singer ul{ width:360px;}
+.game .singer ul li{ width:120px; float:left; margin:0 60px 10px 0;}
+/** 新增foot **/
+.footMap{ margin: 0 auto; overflow: hidden; padding-bottom: 10px; position: relative; width: 1000px; border-top:1px solid #e2e2e2; padding-top:10px;}
+.footMap li { color: #6A6A6A; float: left; line-height: 21px; font-size:12px; margin:2px 0; padding-left: 22px; width: 120px; font-weight:bold;}
+.footMap li a{ color:#1c67ac; font-weight:normal;}
+.foot{ text-align:center; font-size:12px;}
+.foot p{ padding:3px 0;}
+.foot p a{ color:#1c67ac;}
+.hzFrm h4{ margin-right:10px; _display:inline;}
+.hzFrm h4 a{ color:#1c67ac; overflow:visible}
+/*搜索*/
+.sate{ font-size:14px; text-indent:1em;}
+.sate span{ font-size:14px; color:#1093d7;}
+.wrapper h1.title{ color:#111; font-size:18px; height:34px; line-height:34px; margin:10px 0; width:655px;}
+.wrapper h1.title span{ color:#1093d7;}
+.wrapper h1.title a{ float:right; font-size:12px; color:#111;}
+.wrapper h1.title a:hover{ color:#1093d7;}
+.wrapper{ background:#fff;}
+.searchbox{ width:655px; margin:0 auto 24px; padding-top:24px; position:relative;}
+.searchbox .txt{ width:529px; height:20px; line-height:20px; padding:10px 108px 10px 10px; border:0 none; border:2px solid #c8c8c8;}
+.searchbox .submit{ width:98px; height:44px; font-size:24px; color:#fff; background:#1093d7; position:absolute; top:24px; right:0; border:0 none; cursor:pointer;}
+.searchbox .submit:hover{ background:#026ba7;}
+.tabs{ width:950px; margin:0 auto 13px; height:38px; line-height:38px; background:url(http://image.kuwo.cn/www2014/line1.gif) repeat-x left bottom;}
+.tabs ul li{ float:left; width:75px; text-align:center; padding:0 15px; font-size:18px; background:url(http://image.kuwo.cn/www2014/line3.gif) no-repeat right 9px;}
+.tabs ul li.bgnone{ background:none;}
+.tabs ul li a{ color:#000;}
+.tabs ul li a:hover, .tabs ul li a.current{ color:#1093d7;}
+.tabs ul li a.current{ display:block; background:url(http://image.kuwo.cn/www2014/line2.gif) no-repeat left bottom;}
+.tabs ul li a.current:hover{ text-decoration:none;}
+p.listen, p.video, p.share, p.down{ width:24px; margin-right:16px;}
+p.listen a, p.video a, p.share a, p.down a, .listen a:hover, p.video a:hover, p.share a:hover, p.down a:hover{ display:block; width:24px; height:25px; padding:0;}
+.mainwrap p.musicName a{ color:#1093d7;}
+.m_list{ width:100%; overflow:hidden;}
+.m_list .top{ height:25px; line-height:25px;}
+.m_list .top p.fl input{ float:left; margin:6px 5px 0 17px; display:inline;}
+.m_list .top a{ display:inline-block; padding:0 20px; background:#f1f1f1; color:#5d5d5d; border-radius:3px;}
+.m_list .top a:hover{ text-decoration:none; background:#1093d7; color:#fff;}
+.m_list .top a.current{ text-decoration:none; background:#1093d7; color:#fff;}
+.m_list .list dl{ background:#f5f5f5; margin-top:13px;}
+.m_list .list dl dd{ height:28px; line-height:28px; float:left; color:#7c7c7c; text-align:center; overflow:hidden; padding:0 10px;}
+.m_list .list dl dd.m_name{ width:135px; text-align:right;}
+.m_list .list dl dd.a_name{ width:165px;}
+.m_list .list dl dd.s_name{ width:52px;}
+.m_list .list dl dd.listen, .main .m_list .list dl dd.video, .main .m_list .list dl dd.share, .main .m_list .list dl dd.down{ width:40px;}
+.m_list .list ul li{ height:25px; line-height:25px; overflow:hidden; margin:18px 0; font-weight:normal;}
+.m_list .list ul li p{ display:block; height:25px; line-height:25px; overflow:hidden; float:left; color:#3b3b3b;padding:0 10px;}
+.m_list .list ul li p.number{ width:45px; margin:0px 5px 0 7px; _margin:0px 5px 0 2px;}
+.m_list .list ul li p.number input{ margin-right:5px;}
+.m_list .list ul li p.m_name{ width:80px;}
+.m_list .list ul li p.a_name{ width:148px;}
+.m_list .list ul li p.s_name{ width:57px;}
+.m_list .list ul li p a{ color:#3b3b3b;}
+.m_list .list ul li p.down{ margin:0;}
+.m_list .list ul li p.listen a{ background-position:0 -300px; _background-position:0 -301px}
+.m_list .list ul li p.listen a:hover{ background-position:0 -325px;}
+.m_list .list ul li p.video a{ background-position:0 -350px;}
+.m_list .list ul li p.video a:hover{ background-position:0 -375px;}
+.m_list .list ul li p.share a{ background-position:0 -400px;}
+.m_list .list ul li p.share a:hover{ background-position:0 -425px;}
+.m_list .list ul li p.down a{ background-position:0 -450px;}
+.m_list .list ul li p.down a:hover{ background-position:0 -475px;}
+.mainwrap .hotSinger{ margin-bottom:10px;}
+.mainwrap .hotSinger ul{ width:670px;}
+.mainwrap .hotSinger ul li{ float:left; margin:0 12px 10px 0; width:122px;}
+.mainwrap .hotSinger ul li a.img{ width:118px; height:118px; border:2px solid #fff;}
+.mainwrap .hotSinger ul li a.img:hover{ border:2px solid #65c2f2;}
+.mainwrap .album .tab_div ul{ width:664px;}
+.mainwrap .album .tab_div ul li{ float:left; width:155px; overflow:hidden; margin:0 11px 10px 0;}
+.mainwrap .mvalbum ul{ width:680px;}
+.mainwrap .mvalbum ul li{ float:left; width:140px; overflow:hidden; margin:0 30px 10px 0;}
+.mainwrap .musicWrap ul{ width:676px;}
+.mainwrap .line{ width:100%; height:2px; line-height:2px; overflow:hidden; background:#d4d4d4;}
+.text{ line-height:200%; border-bottom:1px dashed #d4d4d4; padding:5px 0;}
+.text h4{ color:#111; font-size:16px;}
+.text h6{ color:#111; font-size:14px;}
+.text p{ color:#6f6f6f;}
+.searchRank{ margin-bottom:20px; width:280px; margin-left:20px;}
+.searchRank ul li{ height:28px; line-height:28px; color:#4b4b4b; overflow:hidden;}
+.searchRank ul li span{ font-style:italic; margin-right:5px;}
+.searchRank ul li span.topnum{ color:#f48a34;}
+.searchRank ul li a{ color:#4b4b4b;}
+.searchRank ul li a:hover{ color:#1093d7;}
+/*分页*/
+.page{ height:27px; margin-top:21px; line-height:27px; width:655px; text-align:center;}
+.page a{ display:inline-block; padding:0 7px; margin:0 3px; color:#1093d7; border-radius:3px;}
+.page a:hover, .page a.current{ color:#fff; background:#1093d7; text-decoration:none;}
+/*专辑*/
+.mainwrap .music{ margin:12px 0; position:relative;}
+.mainwrap .music img{ display:block; float:left; margin-right:12px;}
+.mainwrap .music .comm{ float:left; width:485px; height:155px; overflow:hidden;}
+.mainwrap .music .comm h2{ color:#656565; font-size:14px; font-weight:bold; padding-top:2px;}
+.mainwrap .music .comm h2 a{ color:#1093d7;}
+.mainwrap .music .comm h2 span{ float:right;}
+.mainwrap .music .comm p{ font-size:12px;}
+.mainwrap .music .comm p.author{ color:#808080; padding:10px 0;}
+.mainwrap .music .comm p.author a{ color:#0e87c6; margin:0 5px;}
+.mainwrap .music .comm p.tips{ padding-top:15px; line-height:180%; color:#656565;height: 45px;overflow: hidden;}
+.mainwrap .music .share{ position:absolute; bottom:0; left:167px; display:none;}
+.mainwrap .music .comm p.author{ color:#808080; padding:10px 0;}
+.mainwrap .music .comm p.author a{ color:#0e87c6; margin:0 5px;}
+.mainwrap .music .comm p.time{ background-position:-47px -33px; color:#808080; text-indent:20px;}
+.mainwrap .music .comm p.time span{ color:#f30; margin-right:5px;}
+/*0515add*/
+.scrollWeek{ width:300px; height:251px; overflow:hidden;}
+/*返回顶部*/
+.back-to {
+    bottom: 5px;
+    display: block;
+    float: right;
+    height: 31px;
+    outline: 0 none;
+    overflow: hidden;
+    position: fixed;
+    right: 10px;
+    width: 102px;
+    z-index: 999;
+}
+.back-top {
+    background: url(http://image.kuwo.cn/www/returnIcn.png) repeat scroll 0 0 rgba(0, 0, 0, 0);
+    display: block;
+    float: right;
+    height: 31px;
+    outline: 0 none;
+    text-indent: -9999em;
+    width: 102px;
+}
+a.playall{ display:block; width:67px; height:18px; line-height:18px; background-position:0 -182px; font-size:12px; color:#fff; text-indent:1em; position:absolute; top:3px; left:100px;}
+a.playall:hover{ text-decoration:none;}
+.down1 h4{ text-align:center; font-size:22px; color:#f25b22; height:30px; line-height:30px; margin:25px 0 10px;}
+.down1 h4 a{ color:#f25b22; display:block; width:100%; background:none;}
+.down1 h4 a:hover{ text-decoration:none;}
+.down1 a.btn1,.down1 a.btn3,.down1 a.btn5{ margin-right:15px;}
+.down1 a{ display:block; width:141px; height:29px; float:left; background:url(http://image.kuwo.cn/www2014/down.jpg) no-repeat; margin-bottom:14px;}
+.down1 a.btn1{ background-position:0 0;}
+.down1 a.btn2{ background-position:-159px 0;}
+.down1 a.btn3{ background-position:0 -43px;}
+.down1 a.btn4{ background-position:-159px -43px;}
+.down1 a.btn5{ background-position:0 -86px;}
+.down1 a.btn6{ background-position:-159px -86px;}
+h1.title a.detail{color:#828383;float:right;font-size:14px;padding-top:5px;}
+h1.title a.detail:hover{color:#1093d7;text-decoration:underline;}
+.nav a.no_underline:hover{text-decoration:none;}
+.nav a.no_underline{margin:0;padding:0 0 0 10px;}

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.music.dao.CommentsDao">
+	
+	<!-- 插入评论 -->
+	<insert id ="insert" parameterType="com.music.bean.CommentsModel" >
+		INSERT INTO comments(
+			id,
+			content,
+			time,
+			count,
+			userid,
+			songid,
+			remark
+		) VALUES(
+			#{id},
+			#{content},
+			#{time},
+			#{count},
+			#{userid},
+			#{songid},
+			#{remark}
+		)
+	</insert>
+	
+	<!-- 根据歌曲编号获取全部评论信息 -->
+	<select id="findBySongId" parameterType="map" resultType="com.music.bean.CommentsModel">
+		SELECT 
+			co.*,
+			us.username AS userName,
+			us.picture AS userPicture
+		FROM comments co
+		LEFT JOIN users us ON us.`id` = co.userid
+		WHERE 1 = 1
+		AND co.songid = #{songId}
+		ORDER BY co.count DESC,co.time DESC
+	</select>
+
+	<!-- 主键获取 -->
+	<select id="findByPrimaryKey" parameterType="map" resultType="com.music.bean.CommentsModel">
+		SELECT 
+			*
+		FROM comments
+		WHERE id = #{commentId}
+	</select>
+	
+	<!-- 更新 -->
+	<update id="update" parameterType="com.music.bean.CommentsModel">
+		UPDATE comments SET
+			id = #{id},
+			content = #{content},
+			time = #{time},
+			count = #{count},
+			userid = #{userid},
+			songid = #{songid},
+			remark = #{remark}
+		WHERE id = #{id}
+	</update>
+</mapper>

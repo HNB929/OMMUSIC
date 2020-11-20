@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.music.dao.UsersDao">
+	<resultMap id="BaseResultMap" type="com.music.bean.Users">
+		<id column="id" property="usersId" />
+		<result column="username" property="username" />
+		<result column="password" property="password" />
+		<result column="role" property="role" />
+		<result column="time" property="registerTime" />
+		<result column="picture" property="picture" />
+		<result column="remark" property="remark" />
+		<result column="tel" property="tel" />
+	</resultMap>
+
+	<!--用户注册  -->
+	<insert id="insertUsers" parameterType="com.music.bean.Users">
+		insert into users(username,password,role,time,picture,remark,tel)
+		values(#{username},#{password},#{role},#{picture},#{remark},#{tel})
+	</insert>
+	<!--查询所有的手机号 -->
+	<select id="selectMobile" resultType="java.lang.String">
+		select tel from users
+	</select>
+	<!--登录验证  -->
+	<select id="loginVerify" parameterType="java.lang.String" resultMap="BaseResultMap">
+		select * from users where tel = #{tel} 
+	</select>
+	
+	<!-- 数据插入  -->
+	<insert id="insert" parameterType="com.music.bean.UserModel">
+		INSERT INTO users(
+			id,
+			username,
+			password,
+			role,
+			time,
+			picture,
+			tel,
+			remark
+		)VALUES(
+			#{id},
+			#{username},
+			#{password},
+			#{role},
+			#{time},
+			#{picture},
+			#{tel},
+			#{remark}
+		)
+	</insert>
+	
+	
+	<!-- 根据手机号获取数据 -->
+	<select id="findByTel" resultType="com.music.bean.UserModel">
+		SELECT
+			*
+		FROM users
+		WHERE tel = #{tel}
+		LIMIT 0,1
+	</select>
+</mapper>
